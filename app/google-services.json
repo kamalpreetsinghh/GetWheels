@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "726092944491",
+    "project_id": "getwheels-1ea8e",
+    "storage_bucket": "getwheels-1ea8e.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:726092944491:android:eab707115a5ffa58bc4d2e",
+        "android_client_info": {
+          "package_name": "com.example.getwheels"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "726092944491-ksp6r1tqr9dk2nudactgbvuh3noc6jsa.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCOdTGElvzkmqLxEJvr24YaROvtYYiTZHg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "726092944491-ksp6r1tqr9dk2nudactgbvuh3noc6jsa.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

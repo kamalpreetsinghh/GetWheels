@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">GetWheels</string>
+    <string name="labelLogin">Find Your Drive</string>
+    <string name="hintEmail">Email</string>
+    <string name="hintPassword">Password</string>
+    <string name="buttonLogin">Login</string>
+    <string name="buttonSignup">Sign Up</string>
+    <string name="app_logo">Get Wheels</string>
+    <string name="hintFirstName">First Name</string>
+    <string name="hintLastName">Last Name</string>
+    <string name="hintConfirmPassword">Confirm Password</string>
+    <string name="buttonCreateAccount">Create Account</string>
+</resources>
