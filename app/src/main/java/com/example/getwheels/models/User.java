@@ -1,6 +1,7 @@
 package com.example.getwheels.models;
 
 public class User {
+    private String userID;
     private String firstName;
     private String lastName;
     private String email;
@@ -9,11 +10,20 @@ public class User {
     public User() {
     }
 
-    public User(String firstName, String lastName, String email, String password) {
+    public User(String userID, String firstName, String lastName, String email, String password) {
+        this.userID = userID;
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
         this.password = password;
+    }
+
+    public String getUserID() {
+        return userID;
+    }
+
+    public void setUserID(String userID) {
+        this.userID = userID;
     }
 
     public String getFirstName() {

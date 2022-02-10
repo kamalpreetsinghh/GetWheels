@@ -13,6 +13,7 @@ import com.example.getwheels.R;
 import com.example.getwheels.databinding.ActivityLoginBinding;
 import com.example.getwheels.databinding.ActivitySignupBinding;
 import com.example.getwheels.models.User;
+import com.example.getwheels.viewmodels.UserViewModel;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -22,6 +23,7 @@ import com.google.firebase.auth.FirebaseUser;
 public class SignupActivity extends AppCompatActivity {
     private final String TAG = this.getClass().getCanonicalName();
     private ActivitySignupBinding binding;
+    private UserViewModel userViewModel;
     private FirebaseAuth mAuth;
 
     @Override
@@ -30,10 +32,13 @@ public class SignupActivity extends AppCompatActivity {
 
         this.binding =ActivitySignupBinding.inflate(getLayoutInflater());
         setContentView(this.binding.getRoot());
+        this.userViewModel = UserViewModel.getInstance(this.getApplication());
 
         this.binding.createAccountButton.setOnClickListener(view -> {
             this.validateData();
         });
+
+        mAuth = FirebaseAuth.getInstance();
     }
 
     private void validateData() {
@@ -94,8 +99,9 @@ public class SignupActivity extends AppCompatActivity {
                         if (task.isSuccessful()) {
                             // Sign in success, update UI with the signed-in user's information
                             Log.d(TAG, "createUserWithEmail:success");
-                            FirebaseUser user = mAuth.getCurrentUser();
-                            openCarsListActivity();
+                            user.setUserID(mAuth.getCurrentUser().getUid());
+                            userViewModel.addUserDetails(user);
+                            openMainActivity();
                             finish();
                         } else {
                             // If sign in fails, display a message to the user.
@@ -108,8 +114,8 @@ public class SignupActivity extends AppCompatActivity {
         // [END create_user_with_email]
     }
 
-    private void openCarsListActivity() {
-        Intent intent = new Intent(this, CarsListActivity.class);
+    private void openMainActivity() {
+        Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
     }
 

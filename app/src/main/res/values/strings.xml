@@ -10,4 +10,15 @@
     <string name="hintLastName">Last Name</string>
     <string name="hintConfirmPassword">Confirm Password</string>
     <string name="buttonCreateAccount">Create Account</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_cars_list_fragment">Hello Cars List fragment</string>
+    <string name="hello_trips_fragment">Hello Trips fragment</string>
+    <string name="hello_profile_fragment">Hello Profile fragment</string>
+    <string name="bottom_nav_cars">Cars</string>
+    <string name="bottom_nav_trips">Trips</string>
+    <string name="bottom_nav_profile">Profile</string>
+    <string name="textViewProfileName">Name</string>
+    <string name="textviewProfileEmail">Email</string>
+    <string name="buttonLogout">Logout</string>
+    <string name="profilePicture">Profile Picture</string>
 </resources>

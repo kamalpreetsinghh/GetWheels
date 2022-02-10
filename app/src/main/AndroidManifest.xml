@@ -13,9 +13,6 @@
             android:name=".views.SignupActivity"
             android:exported="false" />
         <activity
-            android:name=".views.CarsListActivity"
-            android:exported="false" />
-        <activity
             android:name=".views.LoginActivity"
             android:exported="true">
             <intent-filter>
@@ -25,8 +22,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".MainActivity"
+            android:name=".views.MainActivity"
             android:exported="true" />
     </application>
-
 </manifest>

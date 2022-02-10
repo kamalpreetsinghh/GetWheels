@@ -6,11 +6,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.View;
 import android.widget.Toast;
 
-import com.example.getwheels.MainActivity;
-import com.example.getwheels.R;
 import com.example.getwheels.databinding.ActivityLoginBinding;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -47,7 +44,7 @@ public class LoginActivity extends AppCompatActivity {
         // Check if user is signed in (non-null) and update UI accordingly.
         FirebaseUser currentUser = mAuth.getCurrentUser();
         if(currentUser != null){
-            openCarsListActivity();
+            openMainActivity();
             finish();
         }
     }
@@ -81,7 +78,7 @@ public class LoginActivity extends AppCompatActivity {
                             Log.d(TAG, "signInWithEmail:success");
                             FirebaseUser user = mAuth.getCurrentUser();
                             Log.i(TAG, "Logged In");
-                            openCarsListActivity();
+                            openMainActivity();
                             finish();
                         } else {
                             // If sign in fails, display a message to the user.
@@ -93,8 +90,8 @@ public class LoginActivity extends AppCompatActivity {
                 });
     }
 
-    private void openCarsListActivity() {
-        Intent intent = new Intent(this, CarsListActivity.class);
+    private void openMainActivity() {
+        Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
     }
 
