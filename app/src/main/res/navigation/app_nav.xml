@@ -20,4 +20,14 @@
         android:name="com.example.getwheels.views.ProfileFragment"
         android:label="fragment_profile"
         tools:layout="@layout/fragment_profile" />
+    <fragment
+        android:id="@+id/carDetailsFragment"
+        android:name="com.example.getwheels.views.CarDetailsFragment"
+        android:label="fragment_car_details"
+        tools:layout="@layout/fragment_car_details" />
+    <fragment
+        android:id="@+id/bookingFragment"
+        android:name="com.example.getwheels.views.BookingFragment"
+        android:label="fragment_booking"
+        tools:layout="@layout/fragment_booking" />
 </navigation>

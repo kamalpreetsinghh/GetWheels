@@ -30,21 +30,18 @@ public class UserRepository {
 
     public void getUserDetails(String userID) {
         DocumentReference document = this.collection.document(userID);
-        document.addSnapshotListener(new EventListener<DocumentSnapshot>() {
-            @Override
-            public void onEvent(@Nullable DocumentSnapshot snapshot, @Nullable FirebaseFirestoreException error) {
-                if (error != null) {
-                    Log.e(TAG, "getUserDetails: ", error);
-                    return;
-                }
-                if (snapshot != null && snapshot.exists()) {
-                    Map<String, Object> data = snapshot.getData();
-                    User userDetails = snapshot.toObject(User.class);
-                    user.postValue(userDetails);
-                    Log.d(TAG, "Current data: " + snapshot.getData());
-                } else {
-                    Log.d(TAG, "Current data: null");
-                }
+        document.addSnapshotListener((snapshot, error) -> {
+            if (error != null) {
+                Log.e(TAG, "getUserDetails: ", error);
+                return;
+            }
+            if (snapshot != null && snapshot.exists()) {
+                Map<String, Object> data = snapshot.getData();
+                User userDetails = snapshot.toObject(User.class);
+                user.postValue(userDetails);
+                Log.d(TAG, "Current data: " + snapshot.getData());
+            } else {
+                Log.d(TAG, "Current data: null");
             }
         });
     }

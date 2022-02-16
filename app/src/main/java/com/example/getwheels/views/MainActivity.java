@@ -28,5 +28,6 @@ public class MainActivity extends AppCompatActivity {
                 .findFragmentById(R.id.fragmentContainerView);
         NavController navController = navHostFragment.getNavController();
         NavigationUI.setupWithNavController(bottomNavigationView, navController);
+
     }
 }
