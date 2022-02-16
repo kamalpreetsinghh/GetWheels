@@ -13,6 +13,7 @@ import com.example.getwheels.R;
 import com.example.getwheels.databinding.FragmentCarDetailsBinding;
 import com.example.getwheels.models.Car;
 import com.example.getwheels.models.Trip;
+import com.example.getwheels.viewmodels.CarViewModel;
 import com.example.getwheels.viewmodels.TripViewModel;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.datepicker.MaterialDatePicker;
@@ -27,6 +28,7 @@ public class CarDetailsFragment extends Fragment {
 
     private FirebaseAuth mAuth;
     private TripViewModel tripViewModel;
+    private CarViewModel carViewModel;
     private Car car;
     private Date startDate;
     private Date endDate;
@@ -57,6 +59,7 @@ public class CarDetailsFragment extends Fragment {
 
         mAuth = FirebaseAuth.getInstance();
         this.tripViewModel = TripViewModel.getInstance(this.requireActivity().getApplication());
+        this.carViewModel = CarViewModel.getInstance(this.requireActivity().getApplication());
         MaterialDatePicker<Pair<Long, Long>> materialDatePicker = MaterialDatePicker.Builder.dateRangePicker()
                 .setTitleText("Select Car Booking Dates")
                 .setSelection(Pair.create(MaterialDatePicker.thisMonthInUtcMilliseconds(), MaterialDatePicker.todayInUtcMilliseconds()))
@@ -95,7 +98,8 @@ public class CarDetailsFragment extends Fragment {
         });
 
         this.binding.imageButtonFav.setOnClickListener(view -> {
-
+            this.car.setUserID(Objects.requireNonNull(mAuth.getCurrentUser()).getUid());
+            this.carViewModel.addToFav(this.car);
         });
 
         return this.binding.getRoot();

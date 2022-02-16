@@ -10,7 +10,6 @@ public class Car {
     private String color;
     private int year;
     private double price;
-    private Bitmap imageData;
     private String imageUrl;
     private String owner;
     private String description;
@@ -18,6 +17,7 @@ public class Car {
     private Date bookedStartDate;
     private Date bookedEndDate;
     private String contactNumber;
+    private String userID;
 
     public Car() {
     }
@@ -82,4 +82,11 @@ public class Car {
         return contactNumber;
     }
 
+    public String getUserID() {
+        return userID;
+    }
+
+    public void setUserID(String userID) {
+        this.userID = userID;
+    }
 }

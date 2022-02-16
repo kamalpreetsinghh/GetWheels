@@ -25,4 +25,9 @@
         android:name="com.example.getwheels.views.CarDetailsFragment"
         android:label="fragment_car_details"
         tools:layout="@layout/fragment_car_details" />
+    <fragment
+        android:id="@+id/favFragment"
+        android:name="com.example.getwheels.views.FavFragment"
+        android:label="fragment_fav"
+        tools:layout="@layout/fragment_fav" />
 </navigation>
