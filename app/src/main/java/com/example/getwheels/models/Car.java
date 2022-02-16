@@ -17,55 +17,21 @@ public class Car {
     private String location;
     private Date bookedStartDate;
     private Date bookedEndDate;
+    private String contactNumber;
 
     public Car() {
-    }
-
-    public Car(String model, String color, int year, float price) {
-        this.model = model;
-        this.color = color;
-        this.year = year;
-        this.price = price;
     }
 
     public String getModel() {
         return model;
     }
 
-    public void setModel(String model) {
-        this.model = model;
-    }
-
-    public String getColor() {
-        return color;
-    }
-
-    public void setColor(String color) {
-        this.color = color;
-    }
-
     public int getYear() {
         return year;
     }
 
-    public void setYear(int year) {
-        this.year = year;
-    }
-
     public float getPrice() {
         return price;
-    }
-
-    public void setPrice(float price) {
-        this.price = price;
-    }
-
-    public Bitmap getImageData() {
-        return imageData;
-    }
-
-    public void setImageData(Bitmap imageData) {
-        this.imageData = imageData;
     }
 
     public String getImageUrl() {
@@ -88,24 +54,12 @@ public class Car {
         return owner;
     }
 
-    public void setOwner(String owner) {
-        this.owner = owner;
-    }
-
     public String getDescription() {
         return description;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
     public String getLocation() {
         return location;
-    }
-
-    public void setLocation(String location) {
-        this.location = location;
     }
 
     public Date getBookedStartDate() {
@@ -123,4 +77,9 @@ public class Car {
     public void setBookedEndDate(Date bookedEndDate) {
         this.bookedEndDate = bookedEndDate;
     }
+
+    public String getContactNumber() {
+        return contactNumber;
+    }
+
 }

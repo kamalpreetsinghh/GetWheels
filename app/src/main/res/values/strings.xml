@@ -34,4 +34,8 @@
     <string name="textviewCarDescriptionLabel">Description:</string>
     <string name="textviewCarDescription">Car Description</string>
     <string name="bookingButton">Book</string>
+    <string name="textviewContactNumber">Contact</string>
+    <string name="imageDescriptionCalendar">Calendar Image</string>
+    <string name="imageDescriptionFavourite">Favourite Image</string>
+    <string name="imageDescriptionDial">Dial Image</string>
 </resources>
