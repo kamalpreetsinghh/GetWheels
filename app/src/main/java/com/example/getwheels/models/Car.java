@@ -9,7 +9,7 @@ public class Car {
     private String model;
     private String color;
     private int year;
-    private float price;
+    private double price;
     private Bitmap imageData;
     private String imageUrl;
     private String owner;
@@ -30,7 +30,7 @@ public class Car {
         return year;
     }
 
-    public float getPrice() {
+    public double getPrice() {
         return price;
     }
 

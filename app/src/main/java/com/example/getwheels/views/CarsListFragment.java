@@ -21,6 +21,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.storage.FirebaseStorage;
 
 import java.util.List;
+import java.util.Objects;
 
 public class CarsListFragment extends Fragment {
     private final String TAG = this.getClass().getCanonicalName();
@@ -47,7 +48,7 @@ public class CarsListFragment extends Fragment {
         this.carViewModel = CarViewModel.getInstance(this.requireActivity().getApplication());
         this.loadRecyclerView(this.requireActivity().getApplication());
 
-        BottomNavigationView navBar = getActivity().findViewById(R.id.bottomNavigationView);
+        BottomNavigationView navBar = requireActivity().findViewById(R.id.bottomNavigationView);
         navBar.setVisibility(View.VISIBLE);
 
         return this.binding.getRoot();
@@ -58,7 +59,7 @@ public class CarsListFragment extends Fragment {
         mutableCarsList.observe(this.requireActivity(), cars -> {
             RecyclerView recyclerView = binding.carsRecyclerView;
             recyclerView.setLayoutManager(new LinearLayoutManager(context));
-            CarsRecyclerViewAdapter adapter = new CarsRecyclerViewAdapter(context, cars);
+            CarsRecyclerViewAdapter adapter = new CarsRecyclerViewAdapter(cars);
             recyclerView.setAdapter(adapter);
         });
     }

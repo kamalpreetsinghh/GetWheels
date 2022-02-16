@@ -28,13 +28,10 @@ import java.util.List;
 
 public class CarsRecyclerViewAdapter extends RecyclerView.Adapter<CarsRecyclerViewAdapter.ViewHolder>{
     private final String TAG = this.getClass().getCanonicalName();
-    private List<Car> mCars;
-    private LayoutInflater mInflater;
-    private AdapterView.OnItemClickListener mClickListener;
+    private final List<Car> mCars;
     private final FirebaseStorage storage;
 
-    public CarsRecyclerViewAdapter(Context context, List<Car> cars) {
-        this.mInflater = LayoutInflater.from(context);
+    public CarsRecyclerViewAdapter(List<Car> cars) {
         this.mCars = cars;
         this.storage = FirebaseStorage.getInstance();
     }
@@ -55,7 +52,7 @@ public class CarsRecyclerViewAdapter extends RecyclerView.Adapter<CarsRecyclerVi
 
         this.storage.getReference().child(mCars.get(viewHolder.getAdapterPosition()).getCarID() + "/carimage.jpg").getDownloadUrl()
                 .addOnSuccessListener(uri ->
-                        Picasso.get().load(mCars.get(position).getImageUrl()).resize(360, 170).centerCrop()
+                        Picasso.get().load(uri).resize(360, 170).centerCrop()
                                 .into(viewHolder.getImageViewCar()))
                 .addOnFailureListener(exception -> {
                 });

@@ -3,31 +3,33 @@ package com.example.getwheels.views;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.util.Pair;
 import androidx.fragment.app.Fragment;
-
 import com.example.getwheels.R;
 import com.example.getwheels.databinding.FragmentCarDetailsBinding;
 import com.example.getwheels.models.Car;
+import com.example.getwheels.models.Trip;
+import com.example.getwheels.viewmodels.TripViewModel;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.datepicker.MaterialDatePicker;
-import com.google.android.material.datepicker.MaterialPickerOnPositiveButtonClickListener;
+import com.google.firebase.auth.FirebaseAuth;
 import com.squareup.picasso.Picasso;
-
-import java.util.Calendar;
 import java.util.Date;
+import java.util.Objects;
 
 public class CarDetailsFragment extends Fragment {
     private final String TAG = this.getClass().getCanonicalName();
     private FragmentCarDetailsBinding binding;
+
+    private FirebaseAuth mAuth;
+    private TripViewModel tripViewModel;
     private Car car;
+    private Date startDate;
+    private Date endDate;
 
     public CarDetailsFragment() { }
 
@@ -53,15 +55,24 @@ public class CarDetailsFragment extends Fragment {
         this.binding = FragmentCarDetailsBinding.inflate(inflater, container, false);
         this.loadCarDetails();
 
+        mAuth = FirebaseAuth.getInstance();
+        this.tripViewModel = TripViewModel.getInstance(this.requireActivity().getApplication());
         MaterialDatePicker<Pair<Long, Long>> materialDatePicker = MaterialDatePicker.Builder.dateRangePicker()
                 .setTitleText("Select Car Booking Dates")
                 .setSelection(Pair.create(MaterialDatePicker.thisMonthInUtcMilliseconds(), MaterialDatePicker.todayInUtcMilliseconds()))
                 .build();
 
         this.binding.bookingButton.setOnClickListener(view -> {
-           AppCompatActivity appCompatActivity = (AppCompatActivity) view.getContext();
-                appCompatActivity.getSupportFragmentManager().beginTransaction()
-                        .replace(R.id.fragmentContainerView, new BookingFragment(this.car.getCarID())).addToBackStack(null).commit();
+            long secondsInMilli = 1000;
+            long minutesInMilli = secondsInMilli * 60;
+            long hoursInMilli = minutesInMilli * 60;
+            long daysInMilli = hoursInMilli * 24;
+            double pricePerDay = this.car.getPrice();
+            int numberOfDays = this.endDate.getDay() - this.startDate.getDay();
+            double price = pricePerDay * numberOfDays;
+            Trip trip = new Trip(Objects.requireNonNull(mAuth.getCurrentUser()).getUid(), this.car.getCarID(), this.car.getModel(), this.startDate, this.endDate, price);
+
+            this.tripViewModel.addTrip(trip);
         });
 
         this.binding.imageButtonNavigate.setOnClickListener(view -> {
@@ -78,21 +89,14 @@ public class CarDetailsFragment extends Fragment {
             materialDatePicker.show(getParentFragmentManager(), materialDatePicker.toString());
 
             materialDatePicker.addOnPositiveButtonClickListener(selection -> {
-                Date startDate = new Date(selection.first);
-                Date endDate = new Date(selection.second);
+                startDate = new Date(selection.first);
+                endDate = new Date(selection.second);
             });
-
-//            materialDatePicker.addOnCancelListener() {
-//                Log.d("DatePicker Activity", "Dialog was cancelled");
-//            }
-
         });
 
         this.binding.imageButtonFav.setOnClickListener(view -> {
 
         });
-
-
 
         return this.binding.getRoot();
     }
