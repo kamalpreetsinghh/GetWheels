@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="175dp">
+    android:layout_height="140dp">
 
     <ImageView
         android:id="@+id/imageViewTripCar"
@@ -57,15 +57,4 @@
         app:layout_constraintStart_toEndOf="@+id/imageViewTripCar"
         app:layout_constraintTop_toBottomOf="@+id/textViewTripPrice" />
 
-    <Button
-        android:id="@+id/cancelTrip"
-        android:layout_width="161dp"
-        android:layout_height="52dp"
-        android:layout_marginTop="4dp"
-        android:backgroundTint="#C30A25"
-        android:text="@string/cancelTripButton"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.116"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageViewTripCar" />
 </androidx.constraintlayout.widget.ConstraintLayout>

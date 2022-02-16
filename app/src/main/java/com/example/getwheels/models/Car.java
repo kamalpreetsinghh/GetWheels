@@ -1,7 +1,5 @@
 package com.example.getwheels.models;
 
-import android.graphics.Bitmap;
-
 import java.util.Date;
 
 public class Car {
@@ -18,6 +16,7 @@ public class Car {
     private Date bookedEndDate;
     private String contactNumber;
     private String userID;
+    private String favCarUserID;
 
     public Car() {
     }
@@ -88,5 +87,13 @@ public class Car {
 
     public void setUserID(String userID) {
         this.userID = userID;
+    }
+
+    public String getFavCarUserID() {
+        return favCarUserID;
+    }
+
+    public void setFavCarUserID(String favCarUserID) {
+        this.favCarUserID = favCarUserID;
     }
 }

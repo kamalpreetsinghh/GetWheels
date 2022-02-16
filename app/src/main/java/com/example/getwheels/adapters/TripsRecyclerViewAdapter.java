@@ -55,7 +55,7 @@ public class TripsRecyclerViewAdapter extends RecyclerView.Adapter<TripsRecycler
         return this.trips.size();
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder {
+    public static class ViewHolder extends RecyclerView.ViewHolder {
         private final TextView textViewTripModel;
         private final TextView textViewTripPrice;
         private final ImageView imageViewTripCar;
@@ -68,12 +68,7 @@ public class TripsRecyclerViewAdapter extends RecyclerView.Adapter<TripsRecycler
             textViewTripPrice = (TextView) view.findViewById(R.id.textViewTripPrice);
             imageViewTripCar = (ImageView) view.findViewById(R.id.imageViewTripCar);
             textViewTripDates = (TextView) view.findViewById(R.id.textViewTripDates);
-            Button cancelTripButton = (Button) view.findViewById(R.id.cancelTrip);
 
-            cancelTripButton.setOnClickListener(v -> {
-
-                    }
-            );
         }
 
         public TextView getTextViewTripModel() {

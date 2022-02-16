@@ -1,12 +1,16 @@
 package com.example.getwheels.views;
 
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
+
 import androidx.annotation.NonNull;
+import androidx.core.app.ActivityCompat;
 import androidx.core.util.Pair;
 import androidx.fragment.app.Fragment;
 import com.example.getwheels.R;
@@ -19,6 +23,8 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.datepicker.MaterialDatePicker;
 import com.google.firebase.auth.FirebaseAuth;
 import com.squareup.picasso.Picasso;
+
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.Objects;
 
@@ -26,7 +32,7 @@ public class CarDetailsFragment extends Fragment {
     private final String TAG = this.getClass().getCanonicalName();
     private FragmentCarDetailsBinding binding;
 
-    private FirebaseAuth mAuth;
+    private String currentUserID;
     private TripViewModel tripViewModel;
     private CarViewModel carViewModel;
     private Car car;
@@ -57,29 +63,43 @@ public class CarDetailsFragment extends Fragment {
         this.binding = FragmentCarDetailsBinding.inflate(inflater, container, false);
         this.loadCarDetails();
 
-        mAuth = FirebaseAuth.getInstance();
+        FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
+        this.currentUserID = Objects.requireNonNull(firebaseAuth.getCurrentUser()).getUid();
         this.tripViewModel = TripViewModel.getInstance(this.requireActivity().getApplication());
         this.carViewModel = CarViewModel.getInstance(this.requireActivity().getApplication());
+
         MaterialDatePicker<Pair<Long, Long>> materialDatePicker = MaterialDatePicker.Builder.dateRangePicker()
                 .setTitleText("Select Car Booking Dates")
-                .setSelection(Pair.create(MaterialDatePicker.thisMonthInUtcMilliseconds(), MaterialDatePicker.todayInUtcMilliseconds()))
+                .setSelection(Pair.create(MaterialDatePicker.todayInUtcMilliseconds(), MaterialDatePicker.todayInUtcMilliseconds()))
                 .build();
 
         this.binding.bookingButton.setOnClickListener(view -> {
-            long secondsInMilli = 1000;
-            long minutesInMilli = secondsInMilli * 60;
-            long hoursInMilli = minutesInMilli * 60;
-            long daysInMilli = hoursInMilli * 24;
-            double pricePerDay = this.car.getPrice();
-            int numberOfDays = this.endDate.getDay() - this.startDate.getDay();
-            double price = pricePerDay * numberOfDays;
-            Trip trip = new Trip(Objects.requireNonNull(mAuth.getCurrentUser()).getUid(), this.car.getCarID(), this.car.getModel(), this.startDate, this.endDate, price);
 
-            this.tripViewModel.addTrip(trip);
+            if(this.car.getUserID() != null && this.car.getUserID().equals(this.currentUserID)) {
+                Toast.makeText(getActivity(), "This car is already booked by you",
+                        Toast.LENGTH_SHORT).show();
+            } else {
+                long daysInMilli = 1000 * 60 * 60 * 24;
+                double pricePerDay = this.car.getPrice();
+                int numberOfDays = (int) Math.abs((this.endDate.getTime() - this.startDate.getTime())/daysInMilli);
+                double tripPrice = pricePerDay * numberOfDays;
+
+                Trip trip = new Trip(this.currentUserID, this.car.getCarID(),
+                        this.car.getModel(), this.startDate, this.endDate, tripPrice);
+
+                this.tripViewModel.addTrip(trip);
+
+                Toast.makeText(getActivity(), "Car Booked",
+                        Toast.LENGTH_SHORT).show();
+            }
         });
 
         this.binding.imageButtonNavigate.setOnClickListener(view -> {
-
+//            if(ActivityCompat.checkSelfPermission(this.requireActivity(), android.Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED
+//                    && ActivityCompat.checkSelfPermission(this.requireActivity(), android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+//                ActivityCompat.requestPermissions(this.requireActivity(), new ArrayList<String>(android.Manifest.permission.ACCESS_FINE_LOCATION, android.Manifest.permission.ACCESS_COARSE_LOCATION)
+//                        ,requestcode
+//            }
         });
 
         this.binding.imageButtonDial.setOnClickListener(view -> {
@@ -98,8 +118,15 @@ public class CarDetailsFragment extends Fragment {
         });
 
         this.binding.imageButtonFav.setOnClickListener(view -> {
-            this.car.setUserID(Objects.requireNonNull(mAuth.getCurrentUser()).getUid());
-            this.carViewModel.addToFav(this.car);
+            if (this.car.getFavCarUserID() != null && this.car.getFavCarUserID().equals(this.currentUserID)) {
+                Toast.makeText(getActivity(), "Already added to favourites",
+                        Toast.LENGTH_SHORT).show();
+            } else {
+                this.car.setFavCarUserID(this.currentUserID);
+                this.carViewModel.addToFav(this.car);
+                Toast.makeText(getActivity(), "Added to Favorites",
+                        Toast.LENGTH_SHORT).show();
+            }
         });
 
         return this.binding.getRoot();

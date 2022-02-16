@@ -26,7 +26,7 @@ public class FavRepository {
     }
 
     public void getFavCars(String userID) {
-        this.collection.whereEqualTo("userID", userID)
+        this.collection.whereEqualTo("favCarUserID", userID)
                 .addSnapshotListener((snapshots, error) -> {
                     if (error != null) {
                         Log.w(TAG, "Listen failed.", error);
@@ -45,5 +45,6 @@ public class FavRepository {
 
     public void addToFav(Car car) {
         this.collection.document().set(car);
+        this.db.collection("cars").document(car.getCarID()).update("favCarUserID", car.getFavCarUserID());
     }
 }

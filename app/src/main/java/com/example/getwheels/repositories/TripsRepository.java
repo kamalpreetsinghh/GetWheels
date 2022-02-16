@@ -14,6 +14,7 @@ import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -50,5 +51,10 @@ public class TripsRepository {
 
     public void addTrip(Trip trip) {
         this.collection.document().set(trip);
+        Map<String, Object> updates = new HashMap<>();
+        updates.put("userID", trip.getUserID());
+        updates.put("bookedStartDate", trip.getBookedStartDate());
+        updates.put("bookedEndDate", trip.getBookedEndDate());
+        this.db.collection("cars").document(trip.getCarID()).update(updates);
     }
 }
