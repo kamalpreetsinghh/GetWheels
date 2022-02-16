@@ -19,6 +19,7 @@ import com.example.getwheels.databinding.FragmentCarsListBinding;
 import com.example.getwheels.databinding.FragmentFavBinding;
 import com.example.getwheels.models.Car;
 import com.example.getwheels.viewmodels.CarViewModel;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.storage.FirebaseStorage;
 
@@ -49,6 +50,9 @@ public class FavFragment extends Fragment {
         this.carViewModel = CarViewModel.getInstance(this.requireActivity().getApplication());
         mAuth = FirebaseAuth.getInstance();
         this.loadRecyclerView(this.requireActivity().getApplication());
+
+        BottomNavigationView navBar = requireActivity().findViewById(R.id.bottomNavigationView);
+        navBar.setVisibility(View.VISIBLE);
        return this.binding.getRoot();
     }
 

@@ -78,7 +78,8 @@ public class CarDetailsFragment extends Fragment {
             if(this.car.getUserID() != null && this.car.getUserID().equals(this.currentUserID)) {
                 Toast.makeText(getActivity(), "This car is already booked by you",
                         Toast.LENGTH_SHORT).show();
-            } else {
+            } else if ((this.car.getBookedStartDate() == null && this.car.getBookedEndDate() == null) ||
+                    (this.car.getBookedStartDate().compareTo(this.endDate) < 0 || this.car.getBookedEndDate().compareTo(this.startDate) > 0)) {
                 long daysInMilli = 1000 * 60 * 60 * 24;
                 double pricePerDay = this.car.getPrice();
                 int numberOfDays = (int) Math.abs((this.endDate.getTime() - this.startDate.getTime())/daysInMilli);
@@ -90,6 +91,9 @@ public class CarDetailsFragment extends Fragment {
                 this.tripViewModel.addTrip(trip);
 
                 Toast.makeText(getActivity(), "Car Booked",
+                        Toast.LENGTH_SHORT).show();
+            } else {
+                Toast.makeText(getActivity(), "This car is not available for the selected dates. Please choose another dates or choose a different car.",
                         Toast.LENGTH_SHORT).show();
             }
         });

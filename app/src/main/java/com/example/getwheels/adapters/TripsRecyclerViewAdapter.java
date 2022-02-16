@@ -16,6 +16,8 @@ import com.example.getwheels.views.CarDetailsFragment;
 import com.google.firebase.storage.FirebaseStorage;
 import com.squareup.picasso.Picasso;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 public class TripsRecyclerViewAdapter extends RecyclerView.Adapter<TripsRecyclerViewAdapter.ViewHolder>{
@@ -39,8 +41,16 @@ public class TripsRecyclerViewAdapter extends RecyclerView.Adapter<TripsRecycler
 
     @Override
     public void onBindViewHolder(@NonNull TripsRecyclerViewAdapter.ViewHolder viewHolder, int position) {
+
+        Date bookingStartDate = trips.get(viewHolder.getAdapterPosition()).getBookedStartDate();
+        Date bookingEndDate = trips.get(viewHolder.getAdapterPosition()).getBookedEndDate();
+        SimpleDateFormat dateFormat = new SimpleDateFormat("MMM dd");
+        String formattedDate = dateFormat.format(bookingStartDate) + " - " + dateFormat.format(bookingEndDate);
+
+
         viewHolder.getTextViewTripModel().setText(trips.get(viewHolder.getAdapterPosition()).getCarModel());
         viewHolder.getTextViewTripPrice().setText("$" + trips.get(viewHolder.getAdapterPosition()).getPrice());
+        viewHolder.getTextViewTripDates().setText(formattedDate);
 
         this.storage.getReference().child(trips.get(viewHolder.getAdapterPosition()).getCarID() + "/carimage.jpg").getDownloadUrl()
                 .addOnSuccessListener(uri ->

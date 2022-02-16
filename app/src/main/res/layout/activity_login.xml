@@ -99,5 +99,5 @@
         app:layout_constraintHorizontal_bias="0.444"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:srcCompat="@drawable/app_text" />
+        android:src="@drawable/app_text" />
 </androidx.constraintlayout.widget.ConstraintLayout>
