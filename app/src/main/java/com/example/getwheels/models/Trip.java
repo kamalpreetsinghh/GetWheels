@@ -9,17 +9,19 @@ public class Trip {
     private Date bookedStartDate;
     private Date bookedEndDate;
     private double price;
+    private Car car;
 
     public Trip() {
     }
 
-    public Trip(String userID, String carID, String carModel, Date bookedStartDate, Date bookedEndDate, double price) {
+    public Trip(String userID, String carID, String carModel, Date bookedStartDate, Date bookedEndDate, double price, Car car) {
         this.userID = userID;
         this.carID = carID;
         this.carModel = carModel;
         this.bookedStartDate = bookedStartDate;
         this.bookedEndDate = bookedEndDate;
         this.price = price;
+        this.car = car;
     }
 
     public String getUserID() {
@@ -64,5 +66,13 @@ public class Trip {
 
     public String getCarModel() {
         return carModel;
+    }
+
+    public Car getCar() {
+        return car;
+    }
+
+    public void setCar(Car car) {
+        this.car = car;
     }
 }

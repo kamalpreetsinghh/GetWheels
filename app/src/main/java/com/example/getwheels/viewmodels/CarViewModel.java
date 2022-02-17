@@ -39,4 +39,8 @@ public class CarViewModel extends AndroidViewModel {
     public void addToFav(Car car) {
         this.favRepository.addToFav(car);
     }
+
+    public void removeFromFav(String userID, String carID) {
+        this.favRepository.removeFromFav(userID, carID);
+    }
 }

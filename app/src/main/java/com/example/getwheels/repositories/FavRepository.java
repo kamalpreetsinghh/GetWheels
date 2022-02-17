@@ -2,12 +2,17 @@ package com.example.getwheels.repositories;
 
 import android.util.Log;
 
+import androidx.annotation.NonNull;
 import androidx.lifecycle.MutableLiveData;
 
 import com.example.getwheels.models.Car;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -46,5 +51,21 @@ public class FavRepository {
     public void addToFav(Car car) {
         this.collection.document().set(car);
         this.db.collection("cars").document(car.getCarID()).update("favCarUserID", car.getFavCarUserID());
+    }
+
+    public void removeFromFav(String userID, String carID) {
+        this.collection.whereEqualTo("favCarUserID", userID)
+                .whereEqualTo("carID", carID).get()
+                .addOnCompleteListener(task -> {
+                    if (task.isSuccessful()) {
+                        int tasks = task.getResult().getDocuments().size();
+                        for (DocumentSnapshot document : task.getResult()) {
+                            collection.document(document.getId()).delete();
+                            db.collection("cars").document(carID).update("favCarUserID", null);
+                        }
+                    } else {
+                        Log.d(TAG, "Error getting documents: ", task.getException());
+                    }
+                });
     }
 }

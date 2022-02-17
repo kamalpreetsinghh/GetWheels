@@ -1,7 +1,6 @@
 package com.example.getwheels.views;
 
 import android.content.Intent;
-import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -10,9 +9,9 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.core.app.ActivityCompat;
 import androidx.core.util.Pair;
 import androidx.fragment.app.Fragment;
+
 import com.example.getwheels.R;
 import com.example.getwheels.databinding.FragmentCarDetailsBinding;
 import com.example.getwheels.models.Car;
@@ -24,7 +23,6 @@ import com.google.android.material.datepicker.MaterialDatePicker;
 import com.google.firebase.auth.FirebaseAuth;
 import com.squareup.picasso.Picasso;
 
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.Objects;
 
@@ -86,7 +84,7 @@ public class CarDetailsFragment extends Fragment {
                 double tripPrice = pricePerDay * numberOfDays;
 
                 Trip trip = new Trip(this.currentUserID, this.car.getCarID(),
-                        this.car.getModel(), this.startDate, this.endDate, tripPrice);
+                        this.car.getModel(), this.startDate, this.endDate, tripPrice, this.car);
 
                 this.tripViewModel.addTrip(trip);
 
@@ -96,14 +94,6 @@ public class CarDetailsFragment extends Fragment {
                 Toast.makeText(getActivity(), "This car is not available for the selected dates. Please choose another dates or choose a different car.",
                         Toast.LENGTH_SHORT).show();
             }
-        });
-
-        this.binding.imageButtonNavigate.setOnClickListener(view -> {
-//            if(ActivityCompat.checkSelfPermission(this.requireActivity(), android.Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED
-//                    && ActivityCompat.checkSelfPermission(this.requireActivity(), android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-//                ActivityCompat.requestPermissions(this.requireActivity(), new ArrayList<String>(android.Manifest.permission.ACCESS_FINE_LOCATION, android.Manifest.permission.ACCESS_COARSE_LOCATION)
-//                        ,requestcode
-//            }
         });
 
         this.binding.imageButtonDial.setOnClickListener(view -> {
@@ -123,8 +113,9 @@ public class CarDetailsFragment extends Fragment {
 
         this.binding.imageButtonFav.setOnClickListener(view -> {
             if (this.car.getFavCarUserID() != null && this.car.getFavCarUserID().equals(this.currentUserID)) {
-                Toast.makeText(getActivity(), "Already added to favourites",
+                Toast.makeText(getActivity(), "Removed from favourites",
                         Toast.LENGTH_SHORT).show();
+                this.carViewModel.removeFromFav(currentUserID, this.car.getCarID());
             } else {
                 this.car.setFavCarUserID(this.currentUserID);
                 this.carViewModel.addToFav(this.car);

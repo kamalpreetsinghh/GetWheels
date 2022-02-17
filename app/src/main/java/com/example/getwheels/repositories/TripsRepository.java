@@ -4,9 +4,12 @@ import android.util.Log;
 
 import androidx.annotation.Nullable;
 import androidx.lifecycle.MutableLiveData;
+
+import com.example.getwheels.models.Car;
 import com.example.getwheels.models.Trip;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
@@ -56,5 +59,20 @@ public class TripsRepository {
         updates.put("bookedStartDate", trip.getBookedStartDate());
         updates.put("bookedEndDate", trip.getBookedEndDate());
         this.db.collection("cars").document(trip.getCarID()).update(updates);
+    }
+
+    public void getTripDetails(String userID, String carID) {
+        this.collection.whereEqualTo("userID", userID)
+                .whereEqualTo("carID", carID).get()
+                .addOnCompleteListener(task -> {
+                    if (task.isSuccessful()) {
+                        for (DocumentSnapshot document : task.getResult()) {
+                            collection.document(document.getId()).delete();
+                            db.collection("cars").document(carID).update("favCarUserID", null);
+                        }
+                    } else {
+                        Log.d(TAG, "Error getting documents: ", task.getException());
+                    }
+                });
     }
 }
