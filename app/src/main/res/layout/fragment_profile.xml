@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/img_app_background"
     tools:context=".views.ProfileFragment">
 
     <ImageView
@@ -16,7 +17,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:ignore="ImageContrastCheck"
-        android:src="@drawable/avatar" />
+        android:src="@drawable/avatar_transparent" />
 
     <TextView
         android:id="@+id/textViewEmail"
