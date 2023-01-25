@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="Theme.GetWheels.SplashScreen" parent="Theme.SplashScreen">
+        <item name="windowSplashScreenBackground">@color/lightBackground</item>
+        <item name="windowSplashScreenAnimatedIcon">@mipmap/ic_launcher</item>
+        <item name="postSplashScreenTheme">@style/Theme.GetWheels</item>
+
+        <item name="android:statusBarColor" >@color/lightBackground</item>
+        <item name="android:navigationBarColor">@color/lightBackground</item>
+        <item name="android:windowLightStatusBar">true</item>
+    </style>
+</resources>

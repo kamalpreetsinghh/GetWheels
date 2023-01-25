@@ -1,0 +1,87 @@
+<resources>
+    <string name="app_name">Get Wheels</string>
+
+    <string name="label_username">Username</string>
+    <string name="label_password">Password</string>
+    <string name="label_forgot_password">Forgot Password?</string>
+    <string name="label_sign_in">Sign In</string>
+    <string name="text_app_logo">app_logo</string>
+    <string name="label_button_facebook">Continue with Facebook</string>
+    <string name="label_button_google">Continue with Google</string>
+    <string name="text_or">OR</string>
+    <string name="label_sign_up_text">Don\'t have an account? Sign Up</string>
+
+    <string name="label_first_name">First Name</string>
+    <string name="label_last_name">Last Name</string>
+    <string name="label_email">Email</string>
+    <string name="label_confirm_password">Confirm Password</string>
+    <string name="label_create_account">Create Account</string>
+    <string name="label_login_text">Already have an account? Sign In</string>
+    <string name="label_sign_up">Sign Up</string>
+
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string name="label_cars">Cars</string>
+    <string name="label_favorites">Favorites</string>
+    <string name="label_trips">Trips</string>
+    <string name="label_profile">Profile</string>
+
+    <string name="price_label">$%1$d/day</string>
+    <string name="number_of_trips_label">%1$d trips</string>
+    <string name="book_car_button">Book Now</string>
+    <string name="overall_label">Overall</string>
+    <string name="car_label">Car</string>
+    <string name="location_label">Location</string>
+    <string name="reviews_label">Reviews</string>
+    <string name="car_range_label">Range</string>
+    <string name="car_top_speed_label">Top Speed</string>
+    <string name="car_acceleration_label">0–60 mph</string>
+    <string name="car_range">%1$d mi</string>
+    <string name="car_top_speed">%1$d mph</string>
+    <string name="car_acceleration">%1$.2fs</string>
+    <string name="car_transmission_label">Transmission</string>
+    <string name="automatic_transmission_label">Automatic</string>
+    <string name="manual_transmission_label">Manual</string>
+    <string name="select_dates_label">Select Dates</string>
+    <string name="select_dates_button_content_desc">Select dates button</string>
+    <string name="location_button_content_desc">View car pickup location</string>
+    <string name="pickup_location_label">Pickup Location</string>
+    <string name="checkout_button_label">Checkout</string>
+    <string name="date_picker_title">Select dates</string>
+    <string name="select_date_dialog_title">Please select your trip dates</string>
+    <string name="select_date_dialog_message">Please select your from and to trip dates before booking.</string>
+
+    <string name="payment_summary_label">Payment Summary</string>
+    <string name="sub_total_label">Sub Total</string>
+    <string name="tax_label">Tax</string>
+    <string name="total_price_label">Total Price</string>
+    <string name="formatted_price_label">$%1$d</string>
+
+    <string name="label_profile_picture">profile_picture</string>
+    <string name="label_contact_us">Contact Us</string>
+    <string name="label_privacy_policy">Privacy Policy</string>
+    <string name="label_terms_and_conditions">Terms And Conditions</string>
+    <string name="label_logout_button">Logout</string>
+
+    <string name="edit_profile_button_alt">Edit Profile Information</string>
+    <string name="update_profile_button_label">Update</string>
+    <string name="delete_profile_button_label">Delete Account</string>
+
+    <string name="error_incorrect_credentials">Incorrect Email or Password</string>
+    <string name="error_first_name_required">First Name is Required</string>
+    <string name="error_last_name_required">Last Name is Required</string>
+    <string name="error_invalid_email">Invalid Email Address</string>
+    <string name="error_confirm_password">Password and Confirm Password does not match</string>
+    <string name="error_email_already_exists">Account with this email already exists</string>
+    <string name="error_weak_password">Password should contain at least 8 characters</string>
+
+    <string name="generic_error">Something wrong happened. Please try again.</string>
+    <string name="client_id">992832500191-eg63u5btqhiv4vk8f181hjro25edgah2.apps.googleusercontent.com</string>
+
+    <string name="capture_button_alt">Capture</string>
+    <string name="switch_camera_button_alt">Switch camera</string>
+    <string name="gallery_button_alt">Gallery</string>
+    <string name="edit_profile_image_button_alt">Switch Camera </string>
+
+
+</resources>

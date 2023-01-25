@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/carsFragment"
+        android:icon="@drawable/icon_car"
+        android:title="@string/label_cars" />
+    <item
+        android:id="@+id/favoritesFragment"
+        android:icon="@drawable/icon_fav_fill"
+        android:title="@string/label_favorites" />
+    <item
+        android:id="@+id/tripsFragment"
+        android:icon="@drawable/icon_trips"
+        android:title="@string/label_trips" />
+    <item
+        android:id="@+id/profileFragment"
+        android:icon="@drawable/icon_person_fill"
+        android:title="@string/label_profile" />
+</menu>

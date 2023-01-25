@@ -1,0 +1,118 @@
+plugins {
+    id 'com.android.application'
+    id 'org.jetbrains.kotlin.android'
+    id 'kotlin-kapt'
+    id 'androidx.navigation.safeargs.kotlin'
+
+    // Google services Gradle plugin
+    id 'com.google.gms.google-services'
+
+    // Firebase
+    id 'com.google.firebase.crashlytics'
+    id 'com.google.firebase.firebase-perf'
+
+    // Hilt
+    id 'dagger.hilt.android.plugin'
+}
+
+android {
+    namespace 'com.cleverlycode.getwheels'
+    compileSdk 33
+
+    defaultConfig {
+        applicationId "com.cleverlycode.getwheels"
+        minSdk 26
+        targetSdk 33
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    buildFeatures {
+        dataBinding true
+    }
+
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+}
+
+dependencies {
+    implementation 'androidx.core:core-ktx:1.9.0'
+    implementation 'androidx.appcompat:appcompat:1.6.0'
+    implementation 'com.google.android.material:material:1.7.0'
+    implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
+    testImplementation 'junit:junit:4.13.2'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.5'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
+
+    // Preferences Data Store
+    implementation("androidx.datastore:datastore-preferences:1.0.0")
+
+    // Hilt
+    implementation("com.google.dagger:hilt-android:2.44")
+    kapt "com.google.dagger:hilt-compiler:2.44"
+
+    // Live Data
+    implementation "androidx.lifecycle:lifecycle-livedata-ktx:2.5.1"
+
+    // Navigation Component
+    implementation "androidx.navigation:navigation-fragment-ktx:2.5.3"
+    implementation "androidx.navigation:navigation-ui-ktx:2.5.3"
+
+    //Firebase
+    implementation platform('com.google.firebase:firebase-bom:31.0.2')
+    //Firebase Authentication
+    implementation 'com.google.firebase:firebase-auth-ktx'
+    //Firebase Analytics
+    implementation 'com.google.firebase:firebase-analytics-ktx'
+    //Firebase Crashlytics
+    implementation 'com.google.firebase:firebase-crashlytics-ktx'
+    //Firebase FireStore
+    implementation 'com.google.firebase:firebase-firestore-ktx'
+    implementation 'com.google.firebase:firebase-perf-ktx'
+    implementation 'com.google.firebase:firebase-config-ktx'
+    //Firebase Storage
+    implementation 'com.google.firebase:firebase-storage-ktx'
+    // FirebaseUI Storage
+    implementation 'com.firebaseui:firebase-ui-storage:7.2.0'
+
+    // Glide
+    implementation 'com.github.bumptech.glide:glide:4.12.0'
+    kapt 'com.github.bumptech.glide:compiler:4.12.0'
+
+    // Lottie
+    implementation "com.airbnb.android:lottie:5.2.0"
+
+    // View Pager 2
+    implementation "androidx.viewpager2:viewpager2:1.0.0"
+
+    // Also add the dependency for the Google Play services library and specify its version
+    implementation 'com.google.android.gms:play-services-auth:20.4.1'
+
+    // Room
+    def room_version = "2.5.0"
+    implementation("androidx.room:room-runtime:$room_version")
+    annotationProcessor("androidx.room:room-compiler:$room_version")
+    kapt "androidx.room:room-compiler:$room_version"
+    // To use Kotlin Symbol Processing (KSP)
+    kapt("androidx.room:room-compiler:$room_version")
+
+    // optional - Kotlin Extensions and Coroutines support for Room
+    implementation("androidx.room:room-ktx:$room_version")
+
+    // Splash Screen
+    implementation 'androidx.core:core-splashscreen:1.0.0'
+
+}

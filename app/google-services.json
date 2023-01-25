@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "339406357246",
+    "project_id": "getwheels-249e8",
+    "storage_bucket": "getwheels-249e8.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:339406357246:android:e84b141ae17e0f81255baf",
+        "android_client_info": {
+          "package_name": "com.cleverlycode.getwheels"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "339406357246-6vcvdl896b6lus10j034riuut7es2798.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD_HU_up732J54DimC-6eIqxRspH0wumoY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "339406357246-6vcvdl896b6lus10j034riuut7es2798.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
