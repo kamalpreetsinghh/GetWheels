@@ -28,8 +28,6 @@ class CarsViewModel @Inject constructor(
     private val _isSyncing = MutableLiveData(false)
     val isSyncing: LiveData<Boolean> get() = _isSyncing
 
-    private var isUserLoggedIn = accountService.currentUser != null
-
     init {
         getCarsStream()
     }

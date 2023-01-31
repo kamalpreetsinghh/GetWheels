@@ -60,14 +60,6 @@ class ProfileFragment : Fragment() {
                 }
             }
 
-            profileImage.setOnClickListener {
-                val action =
-                    ProfileFragmentDirections.actionProfileFragmentToProfileDetailFragment()
-                viewmodel?.navigateToProfileDetails(action) { navDirections ->
-                    appState.navigate(navDirections)
-                }
-            }
-
             editProfileButton.setOnClickListener {
                 val action = ProfileFragmentDirections.actionProfileFragmentToEditProfileFragment(
                     firstName = viewModel.profileUiState.value?.firstName ?: "",

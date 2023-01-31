@@ -12,7 +12,11 @@
         tools:layout="@layout/fragment_cars">
         <action
             android:id="@+id/action_carsFragment_to_carDetailFragment"
-            app:destination="@id/carDetailFragment" />
+            app:destination="@id/carDetailFragment"
+            app:enterAnim="@android:anim/slide_in_left"
+            app:exitAnim="@android:anim/slide_out_right"
+            app:popEnterAnim="@android:anim/slide_in_left"
+            app:popExitAnim="@android:anim/slide_out_right" />
     </fragment>
     <fragment
         android:id="@+id/favoritesFragment"
@@ -22,12 +26,25 @@
         <action
             android:id="@+id/action_favoritesFragment_to_carDetailFragment"
             app:destination="@id/carDetailFragment" />
+        <action
+            android:id="@+id/action_favoritesFragment_to_loginFragment"
+            app:destination="@id/authNavGraph"
+            app:launchSingleTop="true"
+            app:popUpTo="@id/authNavGraph"
+            app:popUpToInclusive="true" />
     </fragment>
     <fragment
         android:id="@+id/tripsFragment"
         android:name="com.cleverlycode.getwheels.ui.views.home.TripsFragment"
         android:label="Trips"
-        tools:layout="@layout/fragment_trips" />
+        tools:layout="@layout/fragment_trips">
+        <action
+            android:id="@+id/action_tripsFragment_to_loginFragment"
+            app:destination="@id/authNavGraph"
+            app:launchSingleTop="true"
+            app:popUpTo="@id/authNavGraph"
+            app:popUpToInclusive="true" />
+    </fragment>
     <fragment
         android:id="@+id/profileFragment"
         android:name="com.cleverlycode.getwheels.ui.views.home.ProfileFragment"
@@ -42,15 +59,7 @@
         <action
             android:id="@+id/action_profileFragment_to_editProfileFragment"
             app:destination="@+id/editProfileFragment" />
-        <action
-            android:id="@+id/action_profileFragment_to_profileDetailFragment"
-            app:destination="@id/profileDetailFragment" />
     </fragment>
-    <fragment
-        android:id="@+id/profileDetailFragment"
-        android:name="com.cleverlycode.getwheels.ui.views.home.ProfileDetailFragment"
-        android:label="Profile Details"
-        tools:layout="@layout/fragment_profile_detail"/>
     <fragment
         android:id="@+id/editProfileFragment"
         android:name="com.cleverlycode.getwheels.ui.views.home.EditProfileFragment"

@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <style name="Theme.GetWheels" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <item name="android:windowActivityTransitions">true</item>
         <item name="android:fontFamily">@font/montserrat</item>
         <item name="colorPrimary">@color/primary</item>
         <item name="colorPrimaryVariant">@color/purple_700</item>
