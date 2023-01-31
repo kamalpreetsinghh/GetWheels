@@ -35,22 +35,22 @@ class MainActivity : AppCompatActivity() {
         val navHostFragmentView: View = binding.navHostFragment
         navHostFragmentView.setOnApplyWindowInsetsListener { view, insets ->
             val statusBarsInsets = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
-                insets.getInsets(WindowInsets.Type.statusBars())
+                insets.getInsets(WindowInsets.Type.statusBars()).top
             } else {
-                TODO("VERSION.SDK_INT < R")
+                0
             }
-            view.updatePadding(top = statusBarsInsets.top)
+            view.updatePadding(top = statusBarsInsets)
             insets
         }
 
         val bottomNavigationView: BottomNavigationView = binding.bottomNavView
         bottomNavigationView.setOnApplyWindowInsetsListener { view, insets ->
             val statusBarsInsets = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
-                insets.getInsets(WindowInsets.Type.navigationBars())
+                insets.getInsets(WindowInsets.Type.navigationBars()).bottom
             } else {
-                TODO("VERSION.SDK_INT < R")
+                0
             }
-            view.updatePadding(bottom = statusBarsInsets.bottom)
+            view.updatePadding(bottom = statusBarsInsets)
             insets
         }
 
@@ -68,7 +68,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun setupBottomNavBar() {
-        val bottomNavigationView: BottomNavigationView = findViewById(R.id.bottom_nav_view)
+        val bottomNavigationView: BottomNavigationView = binding.bottomNavView
         bottomNavigationView.setupWithNavController(navController)
 
         navController.addOnDestinationChangedListener { _, navDestination: NavDestination, _ ->

@@ -12,7 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="12dp"
-        android:backgroundTint="#DBDADA"
+        android:backgroundTint="@color/backgroundGrey"
         app:cardElevation="0dp">
 
         <androidx.constraintlayout.widget.ConstraintLayout
