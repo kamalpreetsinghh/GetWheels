@@ -16,7 +16,6 @@ import com.cleverlycode.getwheels.ui.viewmodels.CarDetailsViewModel
 import com.google.android.material.datepicker.MaterialDatePicker
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import dagger.hilt.android.AndroidEntryPoint
-import java.util.*
 
 @AndroidEntryPoint
 class CarDetailFragment : Fragment() {
@@ -50,7 +49,7 @@ class CarDetailFragment : Fragment() {
             bookCarButton.setOnClickListener {
                 val fromDate = viewModel.fromDate.value
                 val toDate = viewModel.toDate.value
-                if(fromDate != null && toDate != null) {
+                if (fromDate != null && toDate != null) {
                     val action =
                         CarDetailFragmentDirections.actionCarDetailFragmentToCarBookingFragment(
                             carId,

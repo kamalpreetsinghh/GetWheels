@@ -36,19 +36,21 @@ class CarDetailsViewModel @Inject constructor(
     val showDates = MutableLiveData(false)
 
     fun setFromDate(milliseconds: Long) {
-        _fromDate.value = Instant.ofEpochMilli(milliseconds).atZone(ZoneId.systemDefault()).toLocalDate()
+        _fromDate.value =
+            Instant.ofEpochMilli(milliseconds).atZone(ZoneId.systemDefault()).toLocalDate()
     }
 
     fun setToDate(milliseconds: Long) {
-        _toDate.value = Instant.ofEpochMilli(milliseconds).atZone(ZoneId.systemDefault()).toLocalDate()
+        _toDate.value =
+            Instant.ofEpochMilli(milliseconds).atZone(ZoneId.systemDefault()).toLocalDate()
     }
 
     fun getCarDetails(carId: String) {
-        viewModelScope.launch() {
+        viewModelScope.launch {
             _carDetails.value = carsRepository.getCarDetails(carId = carId)
         }
 
-        viewModelScope.launch() {
+        viewModelScope.launch {
             imageRefs.value = carsService.getCarsPictureRefList(carId)
         }
     }

@@ -13,7 +13,6 @@ import com.cleverlycode.getwheels.ui.models.Profile
 import com.google.firebase.storage.StorageReference
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.runBlocking
 import javax.inject.Inject
 
 @HiltViewModel
@@ -40,7 +39,8 @@ class ProfileViewModel @Inject constructor(
     fun getProfilePictureReference(): LiveData<StorageReference> {
         val storageReference = MutableLiveData<StorageReference>()
         viewModelScope.launch {
-            storageReference.value = profileService.getProfilePictureRef(accountService.currentUserId)
+            storageReference.value =
+                profileService.getProfilePictureRef(accountService.currentUserId)
         }
 
         return storageReference

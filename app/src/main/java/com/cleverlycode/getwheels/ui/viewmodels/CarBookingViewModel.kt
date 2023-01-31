@@ -3,10 +3,10 @@ package com.cleverlycode.getwheels.ui.viewmodels
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
+import com.cleverlycode.getwheels.domain.models.BookingDetails
 import com.cleverlycode.getwheels.service.AccountService
 import com.cleverlycode.getwheels.service.BookingService
 import com.cleverlycode.getwheels.service.LogService
-import com.cleverlycode.getwheels.domain.models.BookingDetails
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -18,7 +18,8 @@ class CarBookingViewModel @Inject constructor(
     accountService: AccountService,
     logService: LogService
 ) : GetWheelsViewModel(logService) {
-    private val _bookingDetails = MutableLiveData(BookingDetails(userId = accountService.currentUserId))
+    private val _bookingDetails =
+        MutableLiveData(BookingDetails(userId = accountService.currentUserId))
     val bookingDetails: LiveData<BookingDetails> get() = _bookingDetails
 
     fun setBookingDetails(bookingDetails: BookingDetails) {

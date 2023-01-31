@@ -6,9 +6,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
-import androidx.fragment.app.viewModels
-import com.cleverlycode.getwheels.ui.adapters.CarsAdapter
 import com.cleverlycode.getwheels.databinding.FragmentCarsBinding
+import com.cleverlycode.getwheels.ui.adapters.CarsAdapter
 import com.cleverlycode.getwheels.ui.viewmodels.CarsViewModel
 import dagger.hilt.android.AndroidEntryPoint
 

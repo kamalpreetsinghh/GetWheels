@@ -34,11 +34,6 @@ class CarsServiceImpl @Inject constructor(
         return Resource.Success(data = cars)
     }
 
-    override suspend fun getCarsImages(userId: String) {
-        firestore.collection(CARS_COLLECTION)
-            .get()
-    }
-
     override suspend fun getCarsPictureRefList(docId: String): List<StorageReference> =
         storage
             .reference

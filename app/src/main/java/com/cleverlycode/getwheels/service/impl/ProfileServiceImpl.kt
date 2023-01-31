@@ -1,8 +1,8 @@
 package com.cleverlycode.getwheels.service.impl
 
 import android.net.Uri
-import com.cleverlycode.getwheels.service.ProfileService
 import com.cleverlycode.getwheels.domain.models.ProfileInfo
+import com.cleverlycode.getwheels.service.ProfileService
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.ktx.toObject

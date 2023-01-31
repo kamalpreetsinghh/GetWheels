@@ -8,9 +8,12 @@ import com.cleverlycode.getwheels.data.remote.CarsService
 import com.cleverlycode.getwheels.domain.models.Car
 import com.cleverlycode.getwheels.domain.models.CarDetail
 import com.cleverlycode.getwheels.domain.repositories.CarsRepository
-import kotlinx.coroutines.*
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.async
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.transform
+import kotlinx.coroutines.runBlocking
+import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
 class CarsRepositoryImpl @Inject constructor(
@@ -51,7 +54,7 @@ class CarsRepositoryImpl @Inject constructor(
         withContext(Dispatchers.IO) {
             val cars = carsService.getCars()
             dao.deleteAllCars()
-            cars.data?.forEach{car ->
+            cars.data?.forEach { car ->
                 dao.insert(carEntity = car.toCarEntity())
             }
         }

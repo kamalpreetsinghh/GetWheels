@@ -5,10 +5,10 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import androidx.navigation.NavDirections
+import com.cleverlycode.getwheels.domain.models.ProfileInfo
 import com.cleverlycode.getwheels.service.AccountService
 import com.cleverlycode.getwheels.service.LogService
 import com.cleverlycode.getwheels.service.ProfileService
-import com.cleverlycode.getwheels.domain.models.ProfileInfo
 import com.cleverlycode.getwheels.ui.models.Profile
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers

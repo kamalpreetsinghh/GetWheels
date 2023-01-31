@@ -3,7 +3,7 @@ package com.cleverlycode.getwheels.domain.models
 import com.google.firebase.storage.StorageReference
 
 data class CarDetail(
-    var id: String  = "",
+    var id: String = "",
     val name: String = "",
     val color: String = "",
     val company: String = "",

@@ -1,7 +1,7 @@
 package com.cleverlycode.getwheels.service.impl
 
-import com.cleverlycode.getwheels.service.BookingService
 import com.cleverlycode.getwheels.domain.models.BookingDetails
+import com.cleverlycode.getwheels.service.BookingService
 import com.google.firebase.Timestamp
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.ktx.toObject

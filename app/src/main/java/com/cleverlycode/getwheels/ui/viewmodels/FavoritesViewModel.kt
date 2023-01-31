@@ -18,7 +18,7 @@ class FavoritesViewModel @Inject constructor(
     fun getFavorites(userId: String): LiveData<List<Car>> {
         val cars = MutableLiveData<List<Car>>()
 
-        viewModelScope.launch() {
+        viewModelScope.launch {
             val carIds = favoritesService.getFavoritesIds(userId = userId)
             cars.value = favoritesService.getFavorites(carIds)
             val x = 0
