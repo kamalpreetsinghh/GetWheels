@@ -5,7 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.liveData
 import androidx.lifecycle.viewModelScope
 import androidx.navigation.NavDirections
-import com.cleverlycode.getwheels.data.repositories.UserPreferencesRepository
+import com.cleverlycode.getwheels.domain.repositories.UserPreferencesRepository
 import com.cleverlycode.getwheels.service.AccountService
 import com.cleverlycode.getwheels.service.LogService
 import com.cleverlycode.getwheels.service.ProfileService
