@@ -1,10 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="backgroundGrey">#1A1A1A</color>
-    <color name="background">#000000</color>
+    <color name="backgroundGrey">#FF101010</color>
+    <color name="background">#FF000000</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
-    <color name="blue">#01559E</color>
-    <color name="grey">#979797</color>
-    <color name="red">#AC0000</color>
+    <color name="blue">#FF01559E</color>
+    <color name="grey">#353535</color>
+    <color name="red">#FFAC0000</color>
+    <color name="textGrey">#FF7B7B7B</color>
+    <color name="onSurface">#C1C1C1</color>
+    <color name="backgroundDarkGrey">#1A1A1A</color>
 </resources>

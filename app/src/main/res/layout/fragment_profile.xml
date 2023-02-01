@@ -33,12 +33,14 @@
             android:id="@+id/edit_profile_button"
             android:layout_width="@dimen/round_button_small"
             android:layout_height="@dimen/round_button_small"
-            android:layout_marginBottom="-8dp"
+            android:layout_marginTop="120dp"
             android:background="@drawable/rounded_corner_button"
             android:contentDescription="@string/edit_profile_button_alt"
-            android:padding="@dimen/spacing_medium"
+            android:padding="12dp"
             android:scaleType="fitCenter"
-            app:layout_constraintBottom_toBottomOf="@id/profile_image"
+            android:backgroundTint="@color/backgroundDarkGrey"
+            app:tint="@color/onSurface"
+            app:layout_constraintTop_toTopOf="@+id/profile_image"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:srcCompat="@drawable/icon_edit" />
@@ -49,7 +51,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="32dp"
             android:text="@{viewmodel.profileUiState.firstName +' '+viewmodel.profileUiState.lastName}"
-            android:textColor="@color/black"
+            android:textColor="@color/onSurface"
             android:textSize="20sp"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
@@ -63,7 +65,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="12dp"
             android:text="@{viewmodel.profileUiState.email}"
-            android:textColor="@color/black"
+            android:textColor="@color/onSurface"
             android:textSize="16sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -78,7 +80,8 @@
             android:layout_marginTop="72dp"
             android:drawableLeft="@drawable/phone_in_talk"
             android:text="@string/label_contact_us"
-            android:textColor="@color/black"
+            android:textColor="@color/onSurface"
+            android:drawableTint="@color/onSurface"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/user_email" />
 
@@ -100,7 +103,8 @@
             android:layout_marginTop="4dp"
             android:drawableLeft="@drawable/privacy_tip"
             android:text="@string/label_privacy_policy"
-            android:textColor="@color/black"
+            android:textColor="@color/onSurface"
+            android:drawableTint="@color/onSurface"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/divider_contact_us" />
 
@@ -122,7 +126,8 @@
             android:layout_marginTop="4dp"
             android:drawableLeft="@drawable/description"
             android:text="@string/label_terms_and_conditions"
-            android:textColor="@color/black"
+            android:textColor="@color/onSurface"
+            android:drawableTint="@color/onSurface"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/divider_privacy_policy" />
 
@@ -144,7 +149,8 @@
             android:layout_marginTop="4dp"
             android:drawableLeft="@drawable/logout"
             android:text="@string/label_logout_button"
-            android:textColor="@color/black"
+            android:textColor="@color/onSurface"
+            android:drawableTint="@color/onSurface"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/divider_terms_and_conditions" />
     </androidx.constraintlayout.widget.ConstraintLayout>
