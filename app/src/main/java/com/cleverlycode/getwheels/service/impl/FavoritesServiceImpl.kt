@@ -1,7 +1,7 @@
 package com.cleverlycode.getwheels.service.impl
 
 import com.cleverlycode.getwheels.domain.models.Car
-import com.cleverlycode.getwheels.service.FavoritesService
+import com.cleverlycode.getwheels.data.remote.FavoritesService
 import com.google.firebase.firestore.FieldPath
 import com.google.firebase.firestore.FieldValue
 import com.google.firebase.firestore.FirebaseFirestore

@@ -1,7 +1,7 @@
 package com.cleverlycode.getwheels.ui.viewmodels
 
 import androidx.lifecycle.ViewModel
-import com.cleverlycode.getwheels.service.LogService
+import com.cleverlycode.getwheels.data.remote.LogService
 import kotlinx.coroutines.CoroutineExceptionHandler
 
 open class GetWheelsViewModel(private val logService: LogService) : ViewModel() {

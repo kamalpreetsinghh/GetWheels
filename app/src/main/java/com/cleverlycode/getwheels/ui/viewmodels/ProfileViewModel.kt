@@ -1,51 +1,56 @@
 package com.cleverlycode.getwheels.ui.viewmodels
 
-import androidx.lifecycle.LiveData
+import android.graphics.Bitmap
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.liveData
 import androidx.lifecycle.viewModelScope
 import androidx.navigation.NavDirections
+import com.cleverlycode.getwheels.data.remote.AccountService
+import com.cleverlycode.getwheels.data.remote.LogService
+import com.cleverlycode.getwheels.domain.models.ProfileInfo
+import com.cleverlycode.getwheels.domain.repositories.ProfileRepository
 import com.cleverlycode.getwheels.domain.repositories.UserPreferencesRepository
-import com.cleverlycode.getwheels.service.AccountService
-import com.cleverlycode.getwheels.service.LogService
-import com.cleverlycode.getwheels.service.ProfileService
 import com.cleverlycode.getwheels.ui.models.Profile
-import com.google.firebase.storage.StorageReference
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.Deferred
+import kotlinx.coroutines.async
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.runBlocking
 import javax.inject.Inject
 
 @HiltViewModel
 class ProfileViewModel @Inject constructor(
     private val accountService: AccountService,
-    private val profileService: ProfileService,
+    private val profileRepository: ProfileRepository,
     private val userPreferencesRepository: UserPreferencesRepository,
     logService: LogService
 ) : GetWheelsViewModel(logService) {
-    val profileUiState: LiveData<Profile> = getProfileInfo()
+    val profileUiState = MutableLiveData<Profile>()
+    val isUserSignedIn = accountService.currentUser != null
 
-    private fun getProfileInfo(): LiveData<Profile> = liveData(showErrorExceptionHandler) {
-        profileService.getProfileDetails(accountService.currentUserId).collect {
-            emit(
-                Profile(
-                    firstName = it.firstName,
-                    lastName = it.lastName,
-                    email = it.email
-                )
-            )
-        }
+    init {
+        getProfileInfo()
     }
 
-    fun getProfilePictureReference(): LiveData<StorageReference> {
-        val storageReference = MutableLiveData<StorageReference>()
+    private fun getProfileInfo() {
         viewModelScope.launch {
-            storageReference.value =
-                profileService.getProfilePictureRef(accountService.currentUserId)
+            if (accountService.currentUser != null) {
+                val profileInfo: ProfileInfo =
+                    profileRepository.getProfileDetails(accountService.currentUserId)
+                profileUiState.value = Profile(
+                    firstName = profileInfo.firstName,
+                    lastName = profileInfo.lastName,
+                    email = profileInfo.email
+                )
+            }
         }
-
-        return storageReference
     }
 
+    fun getProfilePictureAsync(): Deferred<Bitmap?> =
+        viewModelScope.async {
+            runBlocking {
+                profileRepository.getProfilePicture(accountService.currentUserId)
+            }
+        }
 
     fun logout(action: NavDirections, navigate: (NavDirections) -> Unit) {
         viewModelScope.launch {
@@ -56,10 +61,6 @@ class ProfileViewModel @Inject constructor(
     }
 
     fun navigateToEditProfile(action: NavDirections, navigate: (NavDirections) -> Unit) {
-        navigate(action)
-    }
-
-    fun navigateToProfileDetails(action: NavDirections, navigate: (NavDirections) -> Unit) {
         navigate(action)
     }
 }

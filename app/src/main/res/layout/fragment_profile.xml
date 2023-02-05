@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+        <import type="android.view.View" />
 
         <variable
             name="viewmodel"
@@ -23,6 +24,7 @@
             android:layout_marginTop="96dp"
             android:contentDescription="@string/label_profile_picture"
             android:scaleType="centerCrop"
+            android:visibility="@{viewmodel.isUserSignedIn ? View.VISIBLE : View.GONE}"
             android:src="@drawable/profile"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -50,6 +52,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="32dp"
+            android:visibility="@{viewmodel.isUserSignedIn ? View.VISIBLE : View.GONE}"
             android:text="@{viewmodel.profileUiState.firstName +' '+viewmodel.profileUiState.lastName}"
             android:textColor="@color/onSurface"
             android:textSize="20sp"
@@ -64,6 +67,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="12dp"
+            android:visibility="@{viewmodel.isUserSignedIn ? View.VISIBLE : View.GONE}"
             android:text="@{viewmodel.profileUiState.email}"
             android:textColor="@color/onSurface"
             android:textSize="16sp"
@@ -148,6 +152,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="4dp"
             android:drawableLeft="@drawable/logout"
+            android:visibility="@{viewmodel.isUserSignedIn ? View.VISIBLE : View.GONE}"
             android:text="@string/label_logout_button"
             android:textColor="@color/onSurface"
             android:drawableTint="@color/onSurface"

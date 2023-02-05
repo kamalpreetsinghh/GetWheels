@@ -1,4 +1,4 @@
-package com.cleverlycode.getwheels.service
+package com.cleverlycode.getwheels.data.remote
 
 import com.google.firebase.auth.FirebaseUser
 

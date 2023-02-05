@@ -8,6 +8,6 @@
     <color name="grey">#353535</color>
     <color name="red">#FFAC0000</color>
     <color name="textGrey">#FF7B7B7B</color>
-    <color name="onSurface">#C1C1C1</color>
+    <color name="onSurface">#FFFFFFFF</color>
     <color name="backgroundDarkGrey">#1A1A1A</color>
 </resources>

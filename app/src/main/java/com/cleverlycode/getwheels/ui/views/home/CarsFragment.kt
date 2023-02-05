@@ -9,6 +9,7 @@ import androidx.fragment.app.activityViewModels
 import com.cleverlycode.getwheels.databinding.FragmentCarsBinding
 import com.cleverlycode.getwheels.ui.adapters.CarsAdapter
 import com.cleverlycode.getwheels.ui.viewmodels.CarsViewModel
+import com.google.android.material.transition.MaterialFadeThrough
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -17,6 +18,13 @@ class CarsFragment : Fragment() {
     private val binding get() = _binding!!
 
     private val viewmodel: CarsViewModel by activityViewModels()
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+
+        enterTransition = MaterialFadeThrough()
+        reenterTransition = MaterialFadeThrough()
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

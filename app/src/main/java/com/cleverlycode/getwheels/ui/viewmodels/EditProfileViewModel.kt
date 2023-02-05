@@ -1,24 +1,30 @@
 package com.cleverlycode.getwheels.ui.viewmodels
 
+import android.content.Context
+import android.graphics.Bitmap
 import android.net.Uri
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import androidx.navigation.NavDirections
+import com.cleverlycode.getwheels.data.remote.AccountService
+import com.cleverlycode.getwheels.data.remote.LogService
+import com.cleverlycode.getwheels.data.remote.ProfileService
 import com.cleverlycode.getwheels.domain.models.ProfileInfo
-import com.cleverlycode.getwheels.service.AccountService
-import com.cleverlycode.getwheels.service.LogService
-import com.cleverlycode.getwheels.service.ProfileService
+import com.cleverlycode.getwheels.domain.repositories.ProfileRepository
 import com.cleverlycode.getwheels.ui.models.Profile
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import java.io.File
+import java.io.IOException
 import javax.inject.Inject
 
 @HiltViewModel
 class EditProfileViewModel @Inject constructor(
     private val accountService: AccountService,
     private val profileService: ProfileService,
+    private val profileRepository: ProfileRepository,
     logService: LogService
 ) : GetWheelsViewModel(logService) {
     private val _profileUiState by lazy {
@@ -37,8 +43,8 @@ class EditProfileViewModel @Inject constructor(
         _profileUiState.value = profile
     }
 
-    fun updateProfilePicture(uri: Uri) {
-        _profileUiState.value = profileUiState.value?.copy(imageUri = uri)
+    fun updateImageBitmap(bitmap: Bitmap) {
+        _profileUiState.value = _profileUiState.value?.copy(imageBitmap = bitmap)
     }
 
     fun onFirstNameChange(newValue: CharSequence, start: Int, before: Int, count: Int) {
@@ -57,15 +63,15 @@ class EditProfileViewModel @Inject constructor(
     }
 
     fun onUpdateProfileButtonClick(action: NavDirections, navigate: (NavDirections) -> Unit) {
-        viewModelScope.launch(Dispatchers.IO) {
-            profileService.updateProfileDetails(
+        viewModelScope.launch {
+            profileRepository.updateProfileDetails(
                 profileInfo = ProfileInfo(
+                    id = accountService.currentUserId,
                     firstName = profileUiState.value?.firstName ?: "",
                     lastName = profileUiState.value?.lastName ?: "",
                     email = profileUiState.value?.email ?: "",
-                    imageUri = profileUiState.value?.imageUri
-                ),
-                userId = accountService.currentUserId
+                    imageBitmap = profileUiState.value?.imageBitmap
+                )
             )
         }
         navigate(action)

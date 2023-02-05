@@ -4,8 +4,8 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.cleverlycode.getwheels.domain.models.Car
-import com.cleverlycode.getwheels.service.FavoritesService
-import com.cleverlycode.getwheels.service.LogService
+import com.cleverlycode.getwheels.data.remote.FavoritesService
+import com.cleverlycode.getwheels.data.remote.LogService
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject

@@ -1,6 +1,6 @@
 package com.cleverlycode.getwheels.service.module
 
-import com.cleverlycode.getwheels.data.remote.CarsService
+import com.cleverlycode.getwheels.data.remote.*
 import com.cleverlycode.getwheels.service.*
 import com.cleverlycode.getwheels.service.impl.*
 import dagger.Binds

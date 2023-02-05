@@ -7,9 +7,10 @@ import androidx.lifecycle.viewModelScope
 import androidx.navigation.NavDirections
 import com.cleverlycode.getwheels.R
 import com.cleverlycode.getwheels.domain.models.ProfileInfo
-import com.cleverlycode.getwheels.service.AccountService
-import com.cleverlycode.getwheels.service.LogService
-import com.cleverlycode.getwheels.service.ProfileService
+import com.cleverlycode.getwheels.data.remote.AccountService
+import com.cleverlycode.getwheels.data.remote.LogService
+import com.cleverlycode.getwheels.data.remote.ProfileService
+import com.cleverlycode.getwheels.domain.repositories.ProfileRepository
 import com.cleverlycode.getwheels.ui.models.SignUp
 import com.google.firebase.auth.FirebaseAuthUserCollisionException
 import com.google.firebase.auth.FirebaseAuthWeakPasswordException
@@ -22,6 +23,7 @@ import javax.inject.Inject
 class SignUpViewModel @Inject constructor(
     private val accountService: AccountService,
     private val profileService: ProfileService,
+    private val profileRepository: ProfileRepository,
     logService: LogService
 ) : GetWheelsViewModel(logService) {
     private val _signUpUiState by lazy {
@@ -86,11 +88,12 @@ class SignUpViewModel @Inject constructor(
                 val uid = accountService.createAccount(email, password)
                 if (uid != null) {
                     val profileInfo = ProfileInfo(
+                        id = uid,
                         firstName = firstName,
                         lastName = lastName,
                         email = email
                     )
-                    profileService.createProfile(profileInfo, uid)
+                    profileRepository.createProfile(profileInfo)
                 }
                 navigate(action)
             }

@@ -1,4 +1,4 @@
-package com.cleverlycode.getwheels.data.local
+package com.cleverlycode.getwheels.data.local.entity
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey

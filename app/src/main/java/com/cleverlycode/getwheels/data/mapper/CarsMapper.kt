@@ -1,11 +1,11 @@
 package com.cleverlycode.getwheels.data.mapper
 
-import com.cleverlycode.getwheels.data.local.CarEntity
+import com.cleverlycode.getwheels.data.local.entity.CarEntity
 import com.cleverlycode.getwheels.domain.models.Car
 import com.cleverlycode.getwheels.domain.models.CarDetail
 
-fun CarEntity.toCar(): Car {
-    return Car(
+fun CarEntity.toCar(): Car =
+    Car(
         id = id,
         name = name,
         color = color,
@@ -18,10 +18,9 @@ fun CarEntity.toCar(): Car {
         imageLocation = imageLocation,
         isFavorite = isFavorite
     )
-}
 
-fun CarEntity.toCarDetail(): CarDetail {
-    return CarDetail(
+fun CarEntity.toCarDetail(): CarDetail =
+    CarDetail(
         id = id,
         name = name,
         color = color,
@@ -39,10 +38,10 @@ fun CarEntity.toCarDetail(): CarDetail {
         hasManualTransmission = hasManualTransmission,
         location = location
     )
-}
 
-fun CarDetail.toCarEntity(): CarEntity {
-    return CarEntity(
+
+fun CarDetail.toCarEntity(): CarEntity =
+    CarEntity(
         id = id,
         name = name,
         color = color,
@@ -60,6 +59,6 @@ fun CarDetail.toCarEntity(): CarEntity {
         hasManualTransmission = hasManualTransmission,
         location = location
     )
-}
+
 
 

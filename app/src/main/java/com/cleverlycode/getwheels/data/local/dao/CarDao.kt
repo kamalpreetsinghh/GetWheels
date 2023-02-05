@@ -1,9 +1,10 @@
-package com.cleverlycode.getwheels.data.local
+package com.cleverlycode.getwheels.data.local.dao
 
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
+import com.cleverlycode.getwheels.data.local.entity.CarEntity
 import kotlinx.coroutines.flow.Flow
 
 @Dao

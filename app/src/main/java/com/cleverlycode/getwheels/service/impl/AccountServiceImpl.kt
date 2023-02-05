@@ -1,6 +1,6 @@
 package com.cleverlycode.getwheels.service.impl
 
-import com.cleverlycode.getwheels.service.AccountService
+import com.cleverlycode.getwheels.data.remote.AccountService
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import kotlinx.coroutines.tasks.await

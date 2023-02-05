@@ -7,7 +7,7 @@ import androidx.navigation.NavDirections
 import com.cleverlycode.getwheels.data.remote.CarsService
 import com.cleverlycode.getwheels.domain.models.CarDetail
 import com.cleverlycode.getwheels.domain.repositories.CarsRepository
-import com.cleverlycode.getwheels.service.LogService
+import com.cleverlycode.getwheels.data.remote.LogService
 import com.google.firebase.storage.StorageReference
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch

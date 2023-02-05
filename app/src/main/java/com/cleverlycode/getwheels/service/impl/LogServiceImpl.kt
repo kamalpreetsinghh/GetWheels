@@ -1,6 +1,6 @@
 package com.cleverlycode.getwheels.service.impl
 
-import com.cleverlycode.getwheels.service.LogService
+import com.cleverlycode.getwheels.data.remote.LogService
 import com.google.firebase.crashlytics.ktx.crashlytics
 import com.google.firebase.ktx.Firebase
 import javax.inject.Inject
