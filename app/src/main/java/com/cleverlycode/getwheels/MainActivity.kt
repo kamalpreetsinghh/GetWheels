@@ -22,7 +22,7 @@ class MainActivity : AppCompatActivity() {
     private var _binding: ActivityMainBinding? = null
     private val binding get() = _binding!!
 
-    private val viewModel: UserViewModel by viewModels()
+    private val viewModel: SharedViewModel by viewModels()
     private lateinit var navController: NavController
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -64,7 +64,7 @@ class MainActivity : AppCompatActivity() {
         navController = navHostFragment.navController
         setupBottomNavBar()
 
-        viewModel.syncWithRemoteDataSource(context = applicationContext)
+        viewModel.getCarsStream(context = applicationContext)
 
         setContentView(binding.root)
     }

@@ -9,7 +9,7 @@ import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.cleverlycode.getwheels.GetWheelsAppState
-import com.cleverlycode.getwheels.UserViewModel
+import com.cleverlycode.getwheels.SharedViewModel
 import com.cleverlycode.getwheels.databinding.FragmentProfileBinding
 import com.cleverlycode.getwheels.ui.viewmodels.ProfileViewModel
 import com.cleverlycode.getwheels.utils.InternalStorageUtils
@@ -23,7 +23,7 @@ class ProfileFragment : Fragment() {
     private var _binding: FragmentProfileBinding? = null
     private val binding get() = _binding!!
     private val viewModel: ProfileViewModel by viewModels()
-    private val userViewModel: UserViewModel by activityViewModels()
+    private val userViewModel: SharedViewModel by activityViewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
