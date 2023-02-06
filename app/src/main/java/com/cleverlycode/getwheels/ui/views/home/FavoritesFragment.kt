@@ -4,13 +4,9 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.activity.addCallback
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
-import androidx.navigation.fragment.findNavController
-import com.cleverlycode.getwheels.GetWheelsAppState
-import com.cleverlycode.getwheels.R
 import com.cleverlycode.getwheels.UserViewModel
 import com.cleverlycode.getwheels.databinding.FragmentFavoritesBinding
 import com.cleverlycode.getwheels.ui.adapters.CarsAdapter
@@ -28,7 +24,6 @@ class FavoritesFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
         enterTransition = MaterialFadeThrough()
         reenterTransition = MaterialFadeThrough()
     }
@@ -40,7 +35,7 @@ class FavoritesFragment : Fragment() {
         _binding = FragmentFavoritesBinding.inflate(inflater, container, false)
 
         if (sharedViewModel.isUserLoggedIn) {
-            viewModel.getFavorites(sharedViewModel.userID).observe(viewLifecycleOwner) { cars ->
+            viewModel.cars.observe(viewLifecycleOwner) { cars ->
                 binding.favRecyclerView.adapter =
                     CarsAdapter(
                         cars = cars
@@ -54,17 +49,15 @@ class FavoritesFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val navController = findNavController()
-        if (!sharedViewModel.isUserLoggedIn) {
-            val action = FavoritesFragmentDirections.actionFavoritesFragmentToLoginFragment()
-            val appState = GetWheelsAppState(navController)
-            appState.navigate(action = action)
-        }
+//        val navController = findNavController()
+//        if (!sharedViewModel.isUserLoggedIn) {
+//            val action = FavoritesFragmentDirections.actionFavoritesFragmentToLoginFragment()
+//            val appState = GetWheelsAppState(navController)
+//            appState.navigate(action = action)
+//        }
 
-        requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner) {
-            navController.popBackStack(R.id.carsFragment, false)
-        }
-
-
+//        requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner) {
+//            navController.popBackStack(R.id.carsFragment, false)
+//        }
     }
 }

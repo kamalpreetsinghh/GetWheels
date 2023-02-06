@@ -1,5 +1,7 @@
 package com.cleverlycode.getwheels.service.impl
 
+import android.graphics.Bitmap
+import android.graphics.BitmapFactory
 import com.cleverlycode.getwheels.data.remote.CarsService
 import com.cleverlycode.getwheels.domain.models.CarDetail
 import com.cleverlycode.getwheels.utils.Resource
@@ -34,6 +36,13 @@ class CarsServiceImpl @Inject constructor(
         return Resource.Success(data = cars)
     }
 
+    override suspend fun getCarsPictureRef(docId: String): StorageReference? {
+        val carsPictureReferenceList =  getCarsPictureRefList(docId = docId)
+        return if(carsPictureReferenceList.isNotEmpty()) {
+            carsPictureReferenceList[0]
+        } else null
+    }
+
     override suspend fun getCarsPictureRefList(docId: String): List<StorageReference> =
         storage
             .reference
@@ -42,22 +51,29 @@ class CarsServiceImpl @Inject constructor(
             .await()
             .items
 
-    private fun getCarsPicturesStorageLocation(uid: String) = "images/cars/$uid/"
+    private fun getCarsPicturesStorageLocation(carId: String) = "images/cars/$carId/"
 
-    private suspend fun checkIfFavorite(userId: String, carId: String): Boolean {
-        var isFavorite = false
-        firestore.collection(FAVORITES_COLLECTION)
+    override suspend fun getFavoritesIds(userId: String): List<String> =
+        firestore.collection(CarsServiceImpl.FAVORITES_COLLECTION)
             .document(userId)
             .get()
             .await()
             .get("carsIds")
             .let {
-                val carsIds = it as List<*>
-                if (carsIds.contains(carId)) {
-                    isFavorite = true
-                }
+                it as List<String>
             }
-        return isFavorite
+
+    override suspend fun getCarPicture(carId: String): Bitmap? {
+        val ONE_MEGABYTE: Long = 1024 * 1024
+        val storageRef = storage
+            .reference
+            .child(getCarsPicturesStorageLocation(carId = carId))
+            .listAll()
+            .await()
+            .items[0]
+
+        val bytes = storageRef.getBytes(ONE_MEGABYTE).await()
+        return BitmapFactory.decodeByteArray(bytes, 0, bytes.size)
     }
 
     companion object {

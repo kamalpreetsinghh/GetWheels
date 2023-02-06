@@ -6,10 +6,10 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import androidx.navigation.NavDirections
 import com.cleverlycode.getwheels.R
-import com.cleverlycode.getwheels.domain.models.ProfileInfo
 import com.cleverlycode.getwheels.data.remote.AccountService
 import com.cleverlycode.getwheels.data.remote.LogService
 import com.cleverlycode.getwheels.data.remote.ProfileService
+import com.cleverlycode.getwheels.domain.models.ProfileInfo
 import com.cleverlycode.getwheels.domain.repositories.ProfileRepository
 import com.cleverlycode.getwheels.ui.models.SignUp
 import com.google.firebase.auth.FirebaseAuthUserCollisionException

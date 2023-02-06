@@ -14,7 +14,6 @@ import androidx.navigation.NavDestination
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
 import com.cleverlycode.getwheels.databinding.ActivityMainBinding
-import com.cleverlycode.getwheels.ui.viewmodels.CarsViewModel
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -23,7 +22,7 @@ class MainActivity : AppCompatActivity() {
     private var _binding: ActivityMainBinding? = null
     private val binding get() = _binding!!
 
-    private val viewModel: CarsViewModel by viewModels()
+    private val viewModel: UserViewModel by viewModels()
     private lateinit var navController: NavController
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -54,17 +53,20 @@ class MainActivity : AppCompatActivity() {
             insets
         }
 
-        installSplashScreen().setKeepOnScreenCondition {
-            viewModel.isLoading.value == false
-        }
-
-        setContentView(binding.root)
+        installSplashScreen()
+//            .setKeepOnScreenCondition {
+//            true    // Put condition for keeping splash screen
+//        }
 
         val navHostFragment =
             supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
 
         navController = navHostFragment.navController
         setupBottomNavBar()
+
+        viewModel.syncWithRemoteDataSource(context = applicationContext)
+
+        setContentView(binding.root)
     }
 
     private fun setupBottomNavBar() {

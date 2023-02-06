@@ -44,4 +44,8 @@ class ProfileRepositoryImpl @Inject constructor(
 
     override suspend fun getProfilePicture(userId: String): Bitmap? =
         profileService.getProfilePicture(userId = userId)
+
+    override suspend fun deleteProfileDetails() {
+        TODO("Not yet implemented")
+    }
 }

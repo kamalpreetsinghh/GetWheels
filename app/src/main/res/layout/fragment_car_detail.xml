@@ -124,9 +124,9 @@
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="24dp"
                     android:text="@{@string/price_label(viewmodel.carDetails.price)}"
+                    android:textColor="@color/onSurface"
                     android:textSize="16sp"
                     android:textStyle="bold"
-                    android:textColor="@color/onSurface"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/car_company"
                     tools:text="$299/day" />
@@ -152,33 +152,33 @@
                             android:layout_width="30dp"
                             android:layout_height="30dp"
                             android:layout_marginStart="8dp"
-                            app:tint="@color/onSurface"
                             android:importantForAccessibility="no"
                             android:src="@drawable/icon_drop"
                             app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="parent" />
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:tint="@color/onSurface" />
 
                         <ImageView
                             android:id="@+id/car_speed_icon"
                             android:layout_width="30dp"
                             android:layout_height="30dp"
-                            app:tint="@color/onSurface"
                             android:importantForAccessibility="no"
                             android:src="@drawable/icon_speed"
                             app:layout_constraintEnd_toStartOf="@+id/car_acceleration_icon"
                             app:layout_constraintStart_toEndOf="@id/car_range_icon"
-                            app:layout_constraintTop_toTopOf="parent" />
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:tint="@color/onSurface" />
 
                         <ImageView
                             android:id="@+id/car_acceleration_icon"
                             android:layout_width="30dp"
                             android:layout_height="30dp"
                             android:layout_marginEnd="8dp"
-                            app:tint="@color/onSurface"
                             android:importantForAccessibility="no"
                             android:src="@drawable/icon_clock"
                             app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintTop_toTopOf="parent" />
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:tint="@color/onSurface" />
 
                         <TextView
                             android:id="@+id/car_range"
@@ -395,12 +395,12 @@
                             android:layout_width="50dp"
                             android:layout_height="50dp"
                             android:backgroundTint="@color/backgroundDarkGrey"
-                            app:tint="@color/onSurface"
                             android:contentDescription="@string/location_button_content_desc"
                             android:scaleType="centerCrop"
                             android:src="@drawable/icon_location"
                             app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintTop_toTopOf="parent" />
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:tint="@color/onSurface" />
                     </androidx.constraintlayout.widget.ConstraintLayout>
                 </com.google.android.material.card.MaterialCardView>
 

@@ -16,7 +16,7 @@ data class CarEntity(
     val numberOfTrips: Int = 0,
     val hostId: String = "",
     val imageLocation: String = "",
-    val isFavorite: Boolean = false,
+    var isFavorite: Boolean = false,
     val acceleration: Double = 0.0,
     val hasManualTransmission: Boolean = false,
     val location: String = "",

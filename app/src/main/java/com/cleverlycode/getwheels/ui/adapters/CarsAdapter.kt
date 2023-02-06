@@ -14,11 +14,12 @@ import com.cleverlycode.getwheels.databinding.CarsListItemBinding
 import com.cleverlycode.getwheels.domain.models.Car
 import com.cleverlycode.getwheels.ui.views.home.CarsFragmentDirections
 import com.cleverlycode.getwheels.ui.views.home.FavoritesFragmentDirections
+import com.cleverlycode.getwheels.utils.InternalStorageUtils
 
 class CarsAdapter(
     private val cars: List<Car>,
+    private val showFavIcon: Boolean = false,
     private val favButtonClick: (String, Boolean) -> Unit = { _, _ -> },
-    private val showFavIcon: Boolean = false
 ) : RecyclerView.Adapter<CarsAdapter.ItemViewHolder>() {
     inner class ItemViewHolder(
         private val binding: CarsListItemBinding
@@ -28,6 +29,7 @@ class CarsAdapter(
 
         fun setCarDetails(car: Car) {
             binding.apply {
+                val carId = car.id
                 carCompany.text = car.company
                 carName.text = car.name
                 carYear.text = car.year.toString()
@@ -45,14 +47,15 @@ class CarsAdapter(
 
                 carCard.setOnClickListener {
                     val navController = Navigation.findNavController(it)
-                    if (navController.currentDestination != null) {
+                    val currentDestination = navController.currentDestination
+                    if (currentDestination != null) {
                         val action: NavDirections = if (
-                            navController.currentDestination!!.id == R.id.carsFragment
+                            currentDestination.id == R.id.carsFragment
                         ) {
-                            CarsFragmentDirections.actionCarsFragmentToCarDetailFragment(carId = car.id)
+                            CarsFragmentDirections.actionCarsFragmentToCarDetailFragment(carId = carId)
                         } else {
                             FavoritesFragmentDirections.actionFavoritesFragmentToCarDetailFragment(
-                                carId = car.id
+                                carId = carId
                             )
                         }
 
@@ -63,12 +66,26 @@ class CarsAdapter(
 
                 favButton.setOnClickListener {
                     favButton.setImageResource(getFavIcon(!car.isFavorite))
-                    car.id?.let { id -> favButtonClick(id, !car.isFavorite) }
+                    carId?.let { id -> favButtonClick(id, !car.isFavorite) }
                 }
 
-                Glide.with(context)
-                    .load(car.imageRef)
-                    .into(carImage)
+                if (carId != null) {
+                    val imageBitmap = InternalStorageUtils.getImageFromInternalStorage(
+                        context = context,
+                        dirName = "cars",
+                        fileName = carId
+                    )
+                    if (imageBitmap != null) {
+                        carImage.setImageBitmap(imageBitmap)
+                    } else {
+                        val carImageRef = car.imageRef
+                        if (carImageRef != null) {
+                            Glide.with(context)
+                                .load(carImageRef)
+                                .into(carImage)
+                        }
+                    }
+                }
             }
         }
 

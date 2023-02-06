@@ -1,14 +1,10 @@
 package com.cleverlycode.getwheels.service.impl
 
-import com.cleverlycode.getwheels.domain.models.Car
 import com.cleverlycode.getwheels.data.remote.FavoritesService
-import com.google.firebase.firestore.FieldPath
 import com.google.firebase.firestore.FieldValue
 import com.google.firebase.firestore.FirebaseFirestore
-import com.google.firebase.firestore.ktx.toObject
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
-import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.tasks.await
 import javax.inject.Inject
 
@@ -25,29 +21,6 @@ class FavoritesServiceImpl @Inject constructor(
             .let {
                 it as List<String>
             }
-
-
-    override suspend fun getFavorites(carIds: List<String>): List<Car> {
-        val carsList: MutableList<Car> = mutableListOf()
-
-        firestore.collection(CARS_COLLECTION)
-            .whereIn(FieldPath.documentId(), carIds)
-            .get()
-            .await()
-            .forEach { carDoc ->
-                if (carDoc != null && carDoc.exists()) {
-                    val car = carDoc.toObject<Car>()
-                    car.id = carDoc.id
-
-                    runBlocking {
-                        car.imageRef = getCarsPictureRefs(carDoc.id)[0]
-                    }
-                    carsList.add(car)
-                }
-            }
-
-        return carsList
-    }
 
     override suspend fun addFavorite(carId: String, userId: String) {
         firestore.collection(FAVORITES_COLLECTION).document(userId)

@@ -78,7 +78,7 @@
                             android:src="@drawable/icon_calendar"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintTop_toTopOf="parent"
-                            app:tint="@color/onSurface"/>
+                            app:tint="@color/onSurface" />
                     </androidx.constraintlayout.widget.ConstraintLayout>
                 </com.google.android.material.card.MaterialCardView>
 
@@ -130,7 +130,7 @@
                             android:src="@drawable/icon_location"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintTop_toTopOf="parent"
-                            app:tint="@color/onSurface"/>
+                            app:tint="@color/onSurface" />
                     </androidx.constraintlayout.widget.ConstraintLayout>
                 </com.google.android.material.card.MaterialCardView>
 

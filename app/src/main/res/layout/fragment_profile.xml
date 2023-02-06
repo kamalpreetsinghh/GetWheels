@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
         <import type="android.view.View" />
 
         <variable
@@ -17,6 +18,32 @@
         android:padding="24dp"
         tools:context=".ui.views.home.ProfileFragment">
 
+        <ImageView
+            android:id="@+id/get_wheels_text_logo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="96dp"
+            android:contentDescription="@string/get_wheels_image_description"
+            android:padding="@dimen/margin_medium"
+            android:src="@drawable/get_wheels_text"
+            android:visibility="@{!viewmodel.isUserSignedIn ? View.VISIBLE : View.GONE}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Button
+            android:id="@+id/login_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:background="@drawable/rounded_corner_button"
+            android:text="@string/label_login_text"
+            android:textStyle="bold"
+            android:visibility="@{!viewmodel.isUserSignedIn ? View.VISIBLE : View.GONE}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/get_wheels_text_logo" />
+
         <com.google.android.material.imageview.ShapeableImageView
             android:id="@+id/profile_image"
             android:layout_width="150dp"
@@ -24,8 +51,8 @@
             android:layout_marginTop="96dp"
             android:contentDescription="@string/label_profile_picture"
             android:scaleType="centerCrop"
-            android:visibility="@{viewmodel.isUserSignedIn ? View.VISIBLE : View.GONE}"
             android:src="@drawable/profile"
+            android:visibility="@{viewmodel.isUserSignedIn ? View.VISIBLE : View.GONE}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
@@ -37,26 +64,27 @@
             android:layout_height="@dimen/round_button_small"
             android:layout_marginTop="120dp"
             android:background="@drawable/rounded_corner_button"
+            android:backgroundTint="@color/backgroundDarkGrey"
             android:contentDescription="@string/edit_profile_button_alt"
             android:padding="12dp"
             android:scaleType="fitCenter"
-            android:backgroundTint="@color/backgroundDarkGrey"
-            app:tint="@color/onSurface"
-            app:layout_constraintTop_toTopOf="@+id/profile_image"
+            android:visibility="@{viewmodel.isUserSignedIn ? View.VISIBLE : View.GONE}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:srcCompat="@drawable/icon_edit" />
+            app:layout_constraintTop_toTopOf="@+id/profile_image"
+            app:srcCompat="@drawable/icon_edit"
+            app:tint="@color/onSurface" />
 
         <TextView
             android:id="@+id/user_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="32dp"
-            android:visibility="@{viewmodel.isUserSignedIn ? View.VISIBLE : View.GONE}"
             android:text="@{viewmodel.profileUiState.firstName +' '+viewmodel.profileUiState.lastName}"
             android:textColor="@color/onSurface"
             android:textSize="20sp"
             android:textStyle="bold"
+            android:visibility="@{viewmodel.isUserSignedIn ? View.VISIBLE : View.GONE}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/profile_image"
@@ -67,10 +95,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="12dp"
-            android:visibility="@{viewmodel.isUserSignedIn ? View.VISIBLE : View.GONE}"
             android:text="@{viewmodel.profileUiState.email}"
             android:textColor="@color/onSurface"
             android:textSize="16sp"
+            android:visibility="@{viewmodel.isUserSignedIn ? View.VISIBLE : View.GONE}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/user_name"
@@ -83,67 +111,68 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="72dp"
             android:drawableLeft="@drawable/phone_in_talk"
+            android:drawableTint="@color/onSurface"
             android:text="@string/label_contact_us"
             android:textColor="@color/onSurface"
-            android:drawableTint="@color/onSurface"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/user_email" />
+            app:layout_constraintBottom_toTopOf="@+id/divider_contact_us"
+            app:layout_constraintStart_toStartOf="parent" />
 
         <View
             android:id="@+id/divider_contact_us"
             android:layout_width="wrap_content"
             android:layout_height="0.75dp"
-            android:layout_marginTop="4dp"
+            android:layout_marginBottom="4dp"
             android:background="?android:attr/listDivider"
+            app:layout_constraintBottom_toTopOf="@+id/button_privacy_policy"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/button_contact_us" />
+            app:layout_constraintStart_toStartOf="parent" />
 
         <Button
             android:id="@+id/button_privacy_policy"
             style="@style/Widget.AppCompat.Button.Borderless"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
+            android:layout_marginBottom="4dp"
             android:drawableLeft="@drawable/privacy_tip"
+            android:drawableTint="@color/onSurface"
             android:text="@string/label_privacy_policy"
             android:textColor="@color/onSurface"
-            android:drawableTint="@color/onSurface"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/divider_contact_us" />
+            app:layout_constraintBottom_toTopOf="@+id/divider_privacy_policy"
+            app:layout_constraintStart_toStartOf="parent" />
 
         <View
             android:id="@+id/divider_privacy_policy"
             android:layout_width="wrap_content"
             android:layout_height="0.75dp"
-            android:layout_marginTop="4dp"
+            android:layout_marginBottom="4dp"
             android:background="?android:attr/listDivider"
+            app:layout_constraintBottom_toTopOf="@+id/button_terms_and_conditions"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/button_privacy_policy" />
+            app:layout_constraintStart_toStartOf="parent" />
 
         <Button
             android:id="@+id/button_terms_and_conditions"
             style="@style/Widget.AppCompat.Button.Borderless"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
             android:drawableLeft="@drawable/description"
+            android:drawableTint="@color/onSurface"
             android:text="@string/label_terms_and_conditions"
             android:textColor="@color/onSurface"
-            android:drawableTint="@color/onSurface"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/divider_privacy_policy" />
+            app:layoutMarginBottom="@{viewmodel.isUserSignedIn ? @dimen/margin_xxxsmall : @dimen/margin_xlarge}"
+            app:layout_constraintBottom_toTopOf="@+id/divider_terms_and_conditions"
+            app:layout_constraintStart_toStartOf="parent" />
 
         <View
             android:id="@+id/divider_terms_and_conditions"
             android:layout_width="wrap_content"
             android:layout_height="0.75dp"
-            android:layout_marginTop="4dp"
+            android:layout_marginBottom="4dp"
             android:background="?android:attr/listDivider"
+            android:visibility="@{viewmodel.isUserSignedIn ? View.VISIBLE : View.GONE}"
+            app:layout_constraintBottom_toTopOf="@+id/logout_button"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/button_terms_and_conditions" />
+            app:layout_constraintStart_toStartOf="parent" />
 
         <Button
             android:id="@+id/logout_button"
@@ -151,12 +180,13 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="4dp"
+            android:layout_marginBottom="@dimen/margin_xlarge"
             android:drawableLeft="@drawable/logout"
-            android:visibility="@{viewmodel.isUserSignedIn ? View.VISIBLE : View.GONE}"
+            android:drawableTint="@color/onSurface"
             android:text="@string/label_logout_button"
             android:textColor="@color/onSurface"
-            android:drawableTint="@color/onSurface"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/divider_terms_and_conditions" />
+            android:visibility="@{viewmodel.isUserSignedIn ? View.VISIBLE : View.GONE}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

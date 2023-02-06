@@ -1,8 +1,6 @@
 package com.cleverlycode.getwheels.ui.viewmodels
 
-import android.content.Context
 import android.graphics.Bitmap
-import android.net.Uri
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
@@ -14,10 +12,7 @@ import com.cleverlycode.getwheels.domain.models.ProfileInfo
 import com.cleverlycode.getwheels.domain.repositories.ProfileRepository
 import com.cleverlycode.getwheels.ui.models.Profile
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import java.io.File
-import java.io.IOException
 import javax.inject.Inject
 
 @HiltViewModel

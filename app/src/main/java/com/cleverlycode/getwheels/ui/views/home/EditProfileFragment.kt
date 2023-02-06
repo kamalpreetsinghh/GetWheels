@@ -1,7 +1,5 @@
 package com.cleverlycode.getwheels.ui.views.home
 
-import android.content.Context
-import android.graphics.Bitmap
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -18,10 +16,9 @@ import com.cleverlycode.getwheels.GetWheelsAppState
 import com.cleverlycode.getwheels.databinding.FragmentEditProfileBinding
 import com.cleverlycode.getwheels.ui.models.Profile
 import com.cleverlycode.getwheels.ui.viewmodels.EditProfileViewModel
+import com.cleverlycode.getwheels.utils.InternalStorageUtils
 import com.google.android.material.transition.MaterialSharedAxis
 import dagger.hilt.android.AndroidEntryPoint
-import java.io.File
-import java.io.IOException
 
 @AndroidEntryPoint
 class EditProfileFragment : Fragment() {
@@ -56,7 +53,12 @@ class EditProfileFragment : Fragment() {
             updateProfileButton.setOnClickListener {
                 val bitmap = viewModel.profileUiState.value?.imageBitmap
                 if (bitmap != null) {
-                    saveImageToInternalStorage(fileName = "profile.jpg", bitmap = bitmap)
+                    InternalStorageUtils.saveImageToInternalStorage(
+                        context = requireContext(),
+                        dirName = "images",
+                        fileName = "profile.jpg",
+                        bitmap = bitmap
+                    )
                 }
                 val action =
                     EditProfileFragmentDirections.actionEditProfileFragmentToProfileFragment()
@@ -93,30 +95,6 @@ class EditProfileFragment : Fragment() {
                 previewImage.setImageBitmap(bitmap)
             }
         }
-
-    private fun saveImageToInternalStorage(
-        fileName: String,
-        bitmap: Bitmap
-    ): Boolean {
-        return try {
-            val fileDirectory = requireContext().getDir("images", Context.MODE_PRIVATE)
-            val file = File(fileDirectory, fileName)
-            if (file.exists()) {
-                file.delete()
-            }
-
-            file.createNewFile()
-            file.outputStream().use { fileOutputStream ->
-                if (!bitmap.compress(Bitmap.CompressFormat.JPEG, 100, fileOutputStream)) {
-                    throw IOException("Could not save the image")
-                }
-            }
-            true
-        } catch (exception: IOException) {
-            exception.printStackTrace()
-            false
-        }
-    }
 
     override fun onDestroyView() {
         super.onDestroyView()

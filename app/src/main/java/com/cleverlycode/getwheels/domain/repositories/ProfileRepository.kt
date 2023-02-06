@@ -8,4 +8,5 @@ interface ProfileRepository {
     suspend fun createProfile(profileInfo: ProfileInfo)
     suspend fun updateProfileDetails(profileInfo: ProfileInfo)
     suspend fun getProfilePicture(userId: String): Bitmap?
+    suspend fun deleteProfileDetails()
 }

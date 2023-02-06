@@ -1,7 +1,6 @@
 package com.cleverlycode.getwheels.domain.models
 
 import android.graphics.Bitmap
-import android.net.Uri
 
 data class ProfileInfo(
     var id: String = "",

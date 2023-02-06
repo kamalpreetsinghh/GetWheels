@@ -82,6 +82,7 @@
     <string name="switch_camera_button_alt">Switch camera</string>
     <string name="gallery_button_alt">Gallery</string>
     <string name="edit_profile_image_button_alt">Switch Camera </string>
+    <string name="get_wheels_image_description">Get Wheels</string>
 
 
 </resources>

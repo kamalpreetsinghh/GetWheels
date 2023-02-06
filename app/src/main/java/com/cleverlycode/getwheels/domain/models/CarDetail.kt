@@ -14,7 +14,7 @@ data class CarDetail(
     val hostId: String? = null,
     var imageRef: StorageReference? = null,
     var imageLocation: String = "",
-    val isFavorite: Boolean = false,
+    var isFavorite: Boolean = false,
     val acceleration: Double = 0.0,
     val topSpeed: Int = 0,
     val range: Int = 0,

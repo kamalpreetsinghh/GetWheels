@@ -3,12 +3,15 @@ package com.cleverlycode.getwheels.ui.viewmodels
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
-import com.cleverlycode.getwheels.domain.models.Car
-import com.cleverlycode.getwheels.domain.repositories.CarsRepository
 import com.cleverlycode.getwheels.data.remote.AccountService
 import com.cleverlycode.getwheels.data.remote.FavoritesService
 import com.cleverlycode.getwheels.data.remote.LogService
+import com.cleverlycode.getwheels.domain.models.Car
+import com.cleverlycode.getwheels.domain.repositories.CarsRepository
+import com.google.firebase.storage.StorageReference
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.Deferred
+import kotlinx.coroutines.async
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -36,12 +39,7 @@ class CarsViewModel @Inject constructor(
         viewModelScope.launch {
             carsRepository.getCarsStream().collectLatest { carsList ->
                 _isLoading.value = false
-                if (carsList.isEmpty()) {
-                    carsRepository.syncWithRemoteDataSource()
-                    _isSyncing.value = true
-                } else {
-                    cars.value = carsList
-                }
+                cars.value = carsList
             }
         }
     }
@@ -61,4 +59,5 @@ class CarsViewModel @Inject constructor(
             }
         }
     }
+
 }
