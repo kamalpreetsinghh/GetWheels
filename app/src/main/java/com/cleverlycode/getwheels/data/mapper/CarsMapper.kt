@@ -15,7 +15,6 @@ fun CarEntity.toCar(): Car =
         ratings = ratings,
         numberOfTrips = numberOfTrips,
         hostId = hostId,
-        imageLocation = imageLocation,
         isFavorite = isFavorite
     )
 
@@ -30,7 +29,6 @@ fun CarEntity.toCarDetail(): CarDetail =
         ratings = ratings,
         numberOfTrips = numberOfTrips,
         hostId = hostId,
-        imageLocation = imageLocation,
         isFavorite = isFavorite,
         acceleration = acceleration,
         topSpeed = topSpeed,
@@ -51,7 +49,6 @@ fun CarDetail.toCarEntity(): CarEntity =
         ratings = ratings,
         numberOfTrips = numberOfTrips,
         hostId = hostId ?: "",
-        imageLocation = imageLocation,
         isFavorite = isFavorite,
         acceleration = acceleration,
         topSpeed = topSpeed,

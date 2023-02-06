@@ -10,7 +10,7 @@ import com.cleverlycode.getwheels.data.local.entity.ProfileEntity
 
 @Database(
     entities = [CarEntity::class, ProfileEntity::class],
-    version = 5,
+    version = 6,
     exportSchema = false
 )
 

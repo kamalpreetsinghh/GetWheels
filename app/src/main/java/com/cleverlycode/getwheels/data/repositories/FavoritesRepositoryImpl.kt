@@ -3,6 +3,7 @@ package com.cleverlycode.getwheels.data.repositories
 import com.cleverlycode.getwheels.data.local.CarsDatabase
 import com.cleverlycode.getwheels.data.mapper.toCar
 import com.cleverlycode.getwheels.data.remote.CarsService
+import com.cleverlycode.getwheels.data.remote.FavoritesService
 import com.cleverlycode.getwheels.domain.models.Car
 import com.cleverlycode.getwheels.domain.repositories.FavoritesRepository
 import kotlinx.coroutines.async
@@ -13,9 +14,10 @@ import javax.inject.Inject
 
 class FavoritesRepositoryImpl @Inject constructor(
     private val carsService: CarsService,
-    db: CarsDatabase
+    private val favoritesService: FavoritesService,
+    carsDatabase: CarsDatabase
 ) : FavoritesRepository {
-    private val dao = db.dao
+    private val dao = carsDatabase.dao
 
     override suspend fun getFavoriteCarsStream(): Flow<List<Car>> {
         val cars = dao.observeFavCars().transform { carEntities ->
@@ -54,6 +56,16 @@ class FavoritesRepositoryImpl @Inject constructor(
                 }
             }
         }
+    }
+
+    override suspend fun addFavorite(carId: String, userId: String) {
+        dao.updateFavorite(id = carId, isFavorite = true)
+        favoritesService.addFavorite(carId = carId, userId = userId)
+    }
+
+    override suspend fun removeFavorite(carId: String, userId: String) {
+        dao.updateFavorite(id = carId, isFavorite = false)
+        favoritesService.removeFavorite(carId = carId, userId = userId)
     }
 
     override suspend fun clearFavorites() {
