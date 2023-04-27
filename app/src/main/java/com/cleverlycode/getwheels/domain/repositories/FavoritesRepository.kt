@@ -4,7 +4,7 @@ import com.cleverlycode.getwheels.domain.models.Car
 import kotlinx.coroutines.flow.Flow
 
 interface FavoritesRepository {
-    suspend fun getFavoriteCarsStream(): Flow<List<Car>>
+    fun getFavoriteCarsStream(): Flow<List<Car>>
     suspend fun getFavoriteCars(): List<Car>
     suspend fun syncFavoriteWithRemoteDataSource(userId: String)
     suspend fun addFavorite(carId: String, userId: String)

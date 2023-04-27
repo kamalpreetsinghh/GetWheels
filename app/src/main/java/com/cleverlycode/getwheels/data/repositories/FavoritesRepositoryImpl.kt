@@ -19,7 +19,7 @@ class FavoritesRepositoryImpl @Inject constructor(
 ) : FavoritesRepository {
     private val dao = carsDatabase.dao
 
-    override suspend fun getFavoriteCarsStream(): Flow<List<Car>> {
+    override fun getFavoriteCarsStream(): Flow<List<Car>> {
         val cars = dao.observeFavCars().transform { carEntities ->
             val carsList: MutableList<Car> = mutableListOf()
             carEntities.forEach { carEntity ->
