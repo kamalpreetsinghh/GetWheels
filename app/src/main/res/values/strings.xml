@@ -83,6 +83,8 @@
     <string name="gallery_button_alt">Gallery</string>
     <string name="edit_profile_image_button_alt">Switch Camera </string>
     <string name="get_wheels_image_description">Get Wheels</string>
+    <string name="app_background_pic">app_background_pic</string>
+    <string name="label_get_your_wheels">Get your wheels</string>
 
 
 </resources>
