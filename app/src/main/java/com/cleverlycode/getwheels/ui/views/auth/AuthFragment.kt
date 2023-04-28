@@ -48,6 +48,12 @@ class AuthFragment : Fragment() {
                 }
             }
 
+            buttonBack.setOnClickListener {
+                viewModel.backButtonClick {
+                    appState.navigateUp()
+                }
+            }
+
             lifecycleOwner = this@AuthFragment
         }
 

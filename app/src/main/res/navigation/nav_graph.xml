@@ -47,7 +47,7 @@
         android:label="Profile"
         tools:layout="@layout/fragment_profile">
         <action
-            android:id="@+id/action_profileFragment_to_loginFragment"
+            android:id="@+id/action_profileFragment_to_authFragment"
             app:destination="@id/authNavGraph"
             app:launchSingleTop="true"
             app:popUpTo="@id/authNavGraph"

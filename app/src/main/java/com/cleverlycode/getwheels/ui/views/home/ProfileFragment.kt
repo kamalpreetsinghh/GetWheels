@@ -66,7 +66,7 @@ class ProfileFragment : Fragment() {
             }
 
             loginButton.setOnClickListener {
-                val action = ProfileFragmentDirections.actionProfileFragmentToLoginFragment()
+                val action = ProfileFragmentDirections.actionProfileFragmentToAuthFragment()
                 viewmodel?.logout(action) { navDirections ->
                     appState.navigate(navDirections)
                 }
@@ -78,7 +78,7 @@ class ProfileFragment : Fragment() {
                     dirName = "images",
                     fileName = profilePictureName
                 )
-                val action = ProfileFragmentDirections.actionProfileFragmentToLoginFragment()
+                val action = ProfileFragmentDirections.actionProfileFragmentToAuthFragment()
                 viewmodel?.logout(action) { navDirections ->
                     appState.navigate(navDirections)
                 }

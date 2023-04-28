@@ -9,6 +9,6 @@ data class BookingDetails(
     val toDate: LocalDate = LocalDate.now(),
     val location: String = "",
     val subTotal: Int = 0,
-    val tax: Int = 0,
-    val totalPrice: Int = 0
+    val tax: Double = 0.0,
+    val totalPrice: Double = 0.0
 )

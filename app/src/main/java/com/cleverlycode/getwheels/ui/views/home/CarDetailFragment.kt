@@ -57,6 +57,12 @@ class CarDetailFragment : Fragment() {
                 openDatePicker()
             }
 
+            buttonBack.setOnClickListener {
+                viewModel.navigateBack {
+                    appState.navigateUp()
+                }
+            }
+
             bookCarButton.setOnClickListener {
                 val fromDate = viewModel.fromDate.value
                 val toDate = viewModel.toDate.value

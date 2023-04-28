@@ -18,6 +18,7 @@
     <string name="label_create_account">Create Account</string>
     <string name="label_login_text">Already have an account? Sign In</string>
     <string name="label_sign_up">Sign Up</string>
+    <string name="label_sign_in_create_account">Sign in or Create Account</string>
 
     <string name="hello_blank_fragment">Hello blank fragment</string>
 
@@ -56,6 +57,7 @@
     <string name="tax_label">Tax</string>
     <string name="total_price_label">Total Price</string>
     <string name="formatted_price_label">$%1$d</string>
+    <string name="formatted_price_label_double">$%1$.2f</string>
 
     <string name="label_profile_picture">profile_picture</string>
     <string name="label_contact_us">Contact Us</string>
@@ -85,6 +87,8 @@
     <string name="get_wheels_image_description">Get Wheels</string>
     <string name="app_background_pic">app_background_pic</string>
     <string name="label_get_your_wheels">Get your wheels</string>
+    <string name="rental_car_pic_label">Rental car pic</string>
+    <string name="booking_details_label">Booking Details</string>
 
 
 </resources>

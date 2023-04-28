@@ -58,4 +58,8 @@ class CarDetailsViewModel @Inject constructor(
     fun navigateToCarBooking(action: NavDirections, navigate: (NavDirections) -> Unit) {
         navigate(action)
     }
+
+    fun navigateBack(navigate: () -> Unit) {
+        navigate();
+    }
 }

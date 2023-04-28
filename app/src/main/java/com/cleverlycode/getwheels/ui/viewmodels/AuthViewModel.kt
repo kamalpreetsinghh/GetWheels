@@ -16,4 +16,8 @@ class AuthViewModel @Inject constructor(
     fun signUpButtonClick(action: NavDirections, navigate: (NavDirections) -> Unit) {
         navigate(action)
     }
+
+    fun backButtonClick(navigate: () -> Unit) {
+        navigate();
+    }
 }

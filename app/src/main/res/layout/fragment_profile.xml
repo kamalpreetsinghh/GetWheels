@@ -46,7 +46,7 @@
                     android:layout_weight="1"
                     android:layout_height="wrap_content"
                     android:background="@drawable/rounded_corner_button"
-                    android:text="@string/label_sign_in"
+                    android:text="@string/label_sign_in_create_account"
                     android:textStyle="bold"
                     android:visibility="@{!viewmodel.isUserSignedIn ? View.VISIBLE : View.GONE}"
                     />

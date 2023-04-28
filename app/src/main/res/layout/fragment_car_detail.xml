@@ -18,10 +18,12 @@
         android:background="@color/background"
         tools:context=".ui.views.home.CarDetailFragment">
 
+
+
         <ScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginBottom="80dp"
+            android:layout_marginBottom="96dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -311,31 +313,33 @@
                             android:visibility="@{viewmodel.showDates ? View.GONE : View.VISIBLE}"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="parent"
-                            tools:text="Select Dates" />
+                            app:layout_constraintTop_toTopOf="parent" />
 
                         <TextView
                             android:id="@+id/car_booking_from"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:layout_marginTop="4dp"
                             android:text="@{viewmodel.fromDate.toString()}"
                             android:textColor="@color/onSurface"
                             android:textStyle="bold"
                             android:visibility="@{viewmodel.showDates ? View.VISIBLE : View.GONE}"
                             app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="parent" />
+                            app:layout_constraintTop_toTopOf="parent"
+                            tools:text="2023-05-02"/>
 
                         <TextView
                             android:id="@+id/car_booking_to"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:layout_marginBottom="4dp"
                             android:text="@{viewmodel.toDate.toString()}"
                             android:textColor="@color/onSurface"
                             android:textStyle="bold"
                             android:visibility="@{viewmodel.showDates ? View.VISIBLE : View.GONE}"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toBottomOf="@+id/car_booking_from" />
+                            tools:text="2023-05-02"/>
 
                         <ImageButton
                             android:id="@+id/calendarButton"
@@ -406,6 +410,21 @@
 
             </androidx.constraintlayout.widget.ConstraintLayout>
         </ScrollView>
+
+        <ImageButton
+            android:id="@+id/button_back"
+            android:layout_margin="24dp"
+            android:layout_width="@dimen/round_button_xsmall"
+            android:layout_height="@dimen/round_button_xsmall"
+            android:background="@drawable/rounded_corner_button"
+            android:backgroundTint="@color/backgroundGrey"
+            android:contentDescription="@string/edit_profile_button_alt"
+            android:padding="8dp"
+            android:scaleType="fitCenter"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/icon_back"
+            app:tint="@color/onSurface" />
 
         <Button
             android:id="@+id/book_car_button"

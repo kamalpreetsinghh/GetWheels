@@ -18,20 +18,48 @@
         android:padding="24dp"
         tools:context=".ui.views.home.CarBookingFragment">
 
-        <ScrollView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            app:layout_constraintBottom_toBottomOf="parent"
+        <ImageButton
+            android:id="@+id/button_back"
+            android:layout_width="@dimen/round_button_xsmall"
+            android:layout_height="@dimen/round_button_xsmall"
+            android:background="@drawable/rounded_corner_button"
+            android:backgroundTint="@color/backgroundGrey"
+            android:contentDescription="@string/edit_profile_button_alt"
+            android:padding="8dp"
+            android:scaleType="fitCenter"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/icon_back"
+            app:tint="@color/onSurface" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/booking_details_label"
+            android:textColor="@color/onSurface"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@+id/button_back"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            app:layout_constraintTop_toTopOf="@+id/button_back"
+            tools:text="Booking Details" />
+
+        <ScrollView
+            android:id="@+id/scrollView2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/button_back">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
                 <com.google.android.material.card.MaterialCardView
-                    android:id="@+id/car_booking_dates_card"
+                    android:id="@+id/car_info_card"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginVertical="12dp"
@@ -48,25 +76,108 @@
                         android:paddingVertical="8dp">
 
                         <TextView
+                            android:id="@+id/booking_car_company"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="6dp"
+                            android:text="@{viewmodel.carDetails.company}"
+                            android:textColor="@color/onSurface"
+                            android:textStyle="bold"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            tools:text="Lamborghini" />
+
+                        <TextView
+                            android:id="@+id/booking_car_name"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="6dp"
+                            android:layout_marginTop="6dp"
+                            android:text="@{viewmodel.carDetails.name}"
+                            android:textColor="@color/onSurface"
+                            android:textStyle="bold"
+                            app:layout_constraintStart_toEndOf="@id/booking_car_company"
+                            app:layout_constraintTop_toTopOf="parent"
+                            tools:text="Centenario" />
+
+                        <TextView
+                            android:id="@+id/booking_car_year"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="6dp"
+                            android:layout_marginTop="6dp"
+                            android:text="@{Integer.toString(viewmodel.carDetails.year)}"
+                            android:textColor="@color/onSurface"
+                            android:textStyle="bold"
+                            app:layout_constraintStart_toEndOf="@id/booking_car_name"
+                            app:layout_constraintTop_toTopOf="parent"
+                            tools:text="2022" />
+
+                        <TextView
+                            android:id="@+id/car_price"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="6dp"
+                            android:text="@{@string/price_label(viewmodel.carDetails.price)}"
+                            android:textColor="@color/onSurface"
+                            android:textStyle="bold"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            tools:text="$299/day" />
+
+                        <ImageView
+                            android:id="@+id/rental_car_image"
+                            android:layout_width="90dp"
+                            android:layout_height="60dp"
+                            android:contentDescription="@string/rental_car_pic_label"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            tools:src="@drawable/get_wheels_logo" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+                </com.google.android.material.card.MaterialCardView>
+
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/car_booking_dates_card"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginVertical="12dp"
+                    android:backgroundTint="@color/backgroundGrey"
+                    app:cardElevation="0dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/car_info_card">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:paddingHorizontal="16dp"
+                        android:paddingVertical="8dp">
+
+                        <TextView
                             android:id="@+id/car_booking_from"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:layout_marginTop="4dp"
                             android:text="@{viewmodel.bookingDetails.fromDate.toString()}"
                             android:textColor="@color/onSurface"
                             android:textStyle="bold"
                             app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="parent" />
+                            app:layout_constraintTop_toTopOf="parent"
+                            tools:text="2023-05-02" />
 
                         <TextView
                             android:id="@+id/car_booking_to"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:layout_marginBottom="4dp"
                             android:text="@{viewmodel.bookingDetails.toDate.toString()}"
                             android:textColor="@color/onSurface"
                             android:textStyle="bold"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toBottomOf="@+id/car_booking_from" />
+                            tools:text="2023-05-02" />
 
                         <ImageButton
                             android:id="@+id/calendarButton"
@@ -76,6 +187,7 @@
                             android:contentDescription="@string/select_dates_button_content_desc"
                             android:scaleType="centerCrop"
                             android:src="@drawable/icon_calendar"
+                            app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintTop_toTopOf="parent"
                             app:tint="@color/onSurface" />
@@ -138,7 +250,7 @@
                     android:id="@+id/payment_summary"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="12dp"
+                    android:layout_marginTop="24dp"
                     android:text="@string/payment_summary_label"
                     android:textColor="@color/onSurface"
                     android:textStyle="bold"
@@ -193,7 +305,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="12dp"
-                            android:text="@{@string/formatted_price_label(viewmodel.bookingDetails.tax)}"
+                            android:text="@{@string/formatted_price_label_double(viewmodel.bookingDetails.tax)}"
                             android:textColor="@color/onSurface"
                             android:textStyle="bold"
                             app:layout_constraintEnd_toEndOf="parent"
@@ -225,7 +337,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="12dp"
-                            android:text="@{@string/formatted_price_label(viewmodel.bookingDetails.totalPrice)}"
+                            android:text="@{@string/formatted_price_label_double(viewmodel.bookingDetails.totalPrice)}"
                             android:textColor="@color/onSurface"
                             android:textStyle="bold"
                             app:layout_constraintEnd_toEndOf="parent"

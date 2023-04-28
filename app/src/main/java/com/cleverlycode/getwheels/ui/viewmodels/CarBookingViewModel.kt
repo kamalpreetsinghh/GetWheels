@@ -12,6 +12,8 @@ import com.cleverlycode.getwheels.domain.repositories.CarsRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import java.time.LocalDate
+import java.time.Period
 import javax.inject.Inject
 
 @HiltViewModel
@@ -21,6 +23,7 @@ class CarBookingViewModel @Inject constructor(
     accountService: AccountService,
     logService: LogService
 ) : GetWheelsViewModel(logService) {
+    private val taxPercent = 0.13
     private val _bookingDetails = MutableLiveData(
         BookingDetails(userId = accountService.currentUserId)
     )
@@ -29,25 +32,24 @@ class CarBookingViewModel @Inject constructor(
     private val _carDetails = MutableLiveData<CarDetail>()
     val carDetails: LiveData<CarDetail> get() = _carDetails
 
-    init {
-        bookingDetails.value?.carId?.let { getCarDetails(carId = it) }
-    }
-
-    private fun getCarDetails(carId: String) {
+    fun setBookingDetails(carId: String, fromDate: LocalDate, toDate: LocalDate) {
         viewModelScope.launch {
-            _carDetails.value = carsRepository.getCarDetails(carId = carId)
-            _bookingDetails.value = _bookingDetails.value?.copy(
-                location = carsRepository.getCarDetails(carId = carId)?.location ?: ""
-            )
+            val carRetrievedDetails = carsRepository.getCarDetails(carId = carId)
+            carRetrievedDetails?.let {carInfo ->
+                _carDetails.value = carInfo
+                val subTotal = calculateSubTotal(carInfo.price, fromDate, toDate)
+                val tax = calculateTax(subTotal)
+                _bookingDetails.value = _bookingDetails.value?.copy(
+                    carId = carId,
+                    fromDate = fromDate,
+                    toDate = toDate,
+                    location = carInfo.location,
+                    subTotal = subTotal,
+                    tax = tax,
+                    totalPrice = subTotal + tax
+                )
+            }
         }
-    }
-
-    fun setBookingDetails(bookingDetails: BookingDetails) {
-        _bookingDetails.value = _bookingDetails.value?.copy(
-            carId = bookingDetails.carId,
-            fromDate = bookingDetails.fromDate,
-            toDate = bookingDetails.toDate
-        )
     }
 
     fun saveBookingDetails() {
@@ -57,4 +59,14 @@ class CarBookingViewModel @Inject constructor(
             }
         }
     }
+
+    fun navigateBack(navigate: () -> Unit) {
+        navigate();
+    }
+
+    private fun calculateSubTotal(price: Int, startDate: LocalDate, endDate: LocalDate) =
+        price * Period.between(startDate, endDate).days
+
+    private fun calculateTax(subTotal: Int) = subTotal * taxPercent
+
 }

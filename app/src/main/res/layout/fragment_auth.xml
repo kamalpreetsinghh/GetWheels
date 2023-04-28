@@ -3,11 +3,6 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <data>
-
-
-    </data>
-
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -23,13 +18,26 @@
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:paddingHorizontal="24dp">
+                android:padding="24dp">
+
+                <ImageButton
+                    android:id="@+id/button_back"
+                    android:layout_width="@dimen/round_button_xsmall"
+                    android:layout_height="@dimen/round_button_xsmall"
+                    android:background="@drawable/rounded_corner_button"
+                    android:contentDescription="@string/edit_profile_button_alt"
+                    android:padding="8dp"
+                    android:scaleType="fitCenter"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:srcCompat="@drawable/icon_back"
+                    app:tint="@color/white" />
 
                 <Button
                     android:id="@+id/button_sign_up"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="32dp"
+                    android:layout_marginBottom="8dp"
                     android:text="@string/label_sign_up"
                     android:background="@drawable/rounded_corner_button"
                     app:layout_constraintBottom_toBottomOf="parent"
@@ -51,8 +59,11 @@
                     android:id="@+id/app_heading"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="16dp"
+                    android:layout_marginBottom="20dp"
                     android:text="@string/label_get_your_wheels"
+                    android:textStyle="bold"
+                    android:textSize="18sp"
+                    android:textColor="@color/white"
                     app:layout_constraintBottom_toTopOf="@+id/button_login"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent" />
