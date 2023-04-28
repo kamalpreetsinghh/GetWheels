@@ -11,6 +11,7 @@ import com.cleverlycode.getwheels.SharedViewModel
 import com.cleverlycode.getwheels.databinding.FragmentCarsBinding
 import com.cleverlycode.getwheels.ui.adapters.CarsAdapter
 import com.cleverlycode.getwheels.ui.viewmodels.CarsViewModel
+import com.google.android.material.transition.MaterialFade
 import com.google.android.material.transition.MaterialFadeThrough
 import dagger.hilt.android.AndroidEntryPoint
 

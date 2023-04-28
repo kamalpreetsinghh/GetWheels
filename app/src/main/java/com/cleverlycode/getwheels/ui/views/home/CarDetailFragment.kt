@@ -15,6 +15,10 @@ import com.cleverlycode.getwheels.ui.adapters.SliderAdapter
 import com.cleverlycode.getwheels.ui.viewmodels.CarDetailsViewModel
 import com.google.android.material.datepicker.MaterialDatePicker
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
+import com.google.android.material.transition.MaterialContainerTransform
+import com.google.android.material.transition.MaterialFade
+import com.google.android.material.transition.MaterialFadeThrough
+import com.google.android.material.transition.MaterialSharedAxis
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -25,6 +29,13 @@ class CarDetailFragment : Fragment() {
     private val args: CarDetailFragmentArgs by navArgs()
 
     private val viewModel: CarDetailsViewModel by viewModels()
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+
+        enterTransition = MaterialContainerTransform()
+        reenterTransition = MaterialContainerTransform()
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,

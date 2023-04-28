@@ -23,6 +23,7 @@ class FavoritesFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
         enterTransition = MaterialFadeThrough()
         reenterTransition = MaterialFadeThrough()
     }

@@ -13,6 +13,7 @@ import com.cleverlycode.getwheels.GetWheelsAppState
 import com.cleverlycode.getwheels.databinding.FragmentSignUpBinding
 import com.cleverlycode.getwheels.ui.viewmodels.SignUpViewModel
 import com.cleverlycode.getwheels.utils.clickableTextSpan
+import com.google.android.material.transition.MaterialFadeThrough
 import com.google.android.material.transition.MaterialSharedAxis
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -26,8 +27,8 @@ class SignUpFragment : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        enterTransition = MaterialSharedAxis(MaterialSharedAxis.Z, true)
-        returnTransition = MaterialSharedAxis(MaterialSharedAxis.Z, false)
+        enterTransition = MaterialFadeThrough()
+        reenterTransition = MaterialFadeThrough()
     }
 
     override fun onCreateView(
