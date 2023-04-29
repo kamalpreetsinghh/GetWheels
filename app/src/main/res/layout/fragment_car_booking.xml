@@ -350,6 +350,15 @@
 
         </ScrollView>
 
+        <TextView
+            android:id="@+id/volley"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/checkout_button"
+            />
+
         <Button
             android:id="@+id/checkout_button"
             android:layout_width="match_parent"
